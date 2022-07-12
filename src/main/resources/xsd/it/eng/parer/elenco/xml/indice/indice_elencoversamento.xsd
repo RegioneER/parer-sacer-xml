@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:complexType name="VerificaFirmeType">
+    <xs:sequence>
+      <xs:element name="esito">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="NEGATIVO"/>
+            <xs:enumeration value="POSITIVO"/>
+            <xs:enumeration value="WARNING"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="descr" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attribute name="tipologia" type="xs:string"/>
+  <xs:complexType name="CRLType">
+    <xs:sequence>
+      <xs:element name="issuerCRL" type="xs:string"/>
+      <xs:element name="numSerialeCRL" minOccurs="0" type="xs:positiveInteger"/>
+      <xs:element name="nomeFileCRL" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="certificatoCAType">
+    <xs:sequence>
+      <xs:element name="issuerCerificatoCA" type="xs:string"/>
+      <xs:element name="numSerialeCertificatoCA" type="xs:positiveInteger"/>
+      <xs:element name="nomeFileCertificatoCA" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="componenteType">
+    <xs:sequence>
+      <xs:element name="urnCalcolato" type="xs:string"/>
+      <xs:element name="nomeComponente" type="xs:string" minOccurs="0" />
+      <xs:element name="tipoComponente" type="xs:string"/>
+      <xs:element name="tipoSupporto" type="xs:string"/>
+      <xs:element name="dimensione" type="xs:integer" minOccurs="0"/>
+      <xs:element name="formatoRappresentazione" type="xs:string" minOccurs="0"/>
+      <xs:element name="hash" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Non definito se il componente non e' di tipo FILE</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="valoreHashCalcolato" type="xs:string"/>
+            <xs:element name="algoritmoHashCalcolato" type="xs:string"/>
+            <xs:element name="encodingHashCalcolato" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="hashVersato" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Non definito se il componente non e' di tipo FILE</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="valoreHashVersato" type="xs:string" minOccurs="0"/>
+            <xs:element name="algoritmoHashVersato" type="xs:string" minOccurs="0"/>
+            <xs:element name="encodingHashVersato" type="xs:string" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="firme" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Non definito se per il componente non sono definite firme</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="firma" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="controlloConformita">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="esito">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:enumeration value="FORMATO_NON_CONFORME"/>
+                              <xs:enumeration value="FORMATO_NON_CONOSCIUTO"/>
+                              <xs:enumeration value="NON_AMMESSO_DELIB_45_CNIPA"/>
+                              <xs:enumeration value="POSITIVO"/>
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="descr" type="xs:string"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="codiceFirmatario" type="xs:string" minOccurs="0"/>
+                  <xs:element name="nomeFirmatario" type="xs:string" minOccurs="0"/>
+                  <xs:element name="cognomeFirmatario" type="xs:string" minOccurs="0"/>
+                  <xs:element name="verifica" minOccurs="0">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="esito">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:enumeration value="POSITIVO"/>
+                              <xs:enumeration value="NEGATIVO"/>
+                              <xs:enumeration value="WARNING"/>
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="descr" type="xs:string"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="riferimentoTemporaleUsato" minOccurs="0">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="timestamp" type="xs:dateTime"/>
+                        <xs:element name="descrizione" type="xs:string">
+                          <xs:annotation>
+                            <xs:documentation>Definita in funzione del tipo di riferimento temporale calcolato</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="contrCrittografico" minOccurs="0">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="esito" type="xs:string"/>
+                        <xs:element name="descr" type="xs:string"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="contrCatenaTrusted" minOccurs="0">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="esito" type="xs:string"/>
+                        <xs:element name="descr" type="xs:string"/>
+                        <xs:element name="certificatoCA" minOccurs="0" maxOccurs="unbounded">
+                          <xs:annotation>
+                            <xs:documentation>Non definito se controllo CATENA_TRUSTED non svolto</xs:documentation>
+                          </xs:annotation>
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element name="nomeFileCertificatoCA" type="xs:string"/>
+                              <xs:element name="nomeFileCRL" minOccurs="0" type="xs:string"/>
+                            </xs:sequence>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="contrCertificato" minOccurs="0">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="esito" type="xs:string"/>
+                        <xs:element name="descr" type="xs:string"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="contrCRL" minOccurs="0">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="esito" type="xs:string"/>
+                        <xs:element name="descr" type="xs:string"/>
+                        <xs:element name="nomeFileCRLUsata" type="xs:string" minOccurs="0">
+                          <xs:annotation>
+                            <xs:documentation>Non definita se controllo CRL non svolto</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sottoComponenti" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="sottoComponente" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="urnCalcolato" type="xs:string"/>
+                  <xs:element name="nomeComponente" type="xs:string" minOccurs="0"/>
+                  <xs:element name="tipo" type="xs:string">
+                    <xs:annotation>
+                      <xs:documentation>Definito dal tipo di componente</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="tipoSupporto" type="xs:string"/>
+                  <xs:element name="dimensione" type="xs:integer" minOccurs="0"/>
+                  <xs:element name="formatoRappresentazione" type="xs:string" minOccurs="0"/>
+                  <xs:element name="hashCalcolato" minOccurs="0">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="valoreHashCalcolato" type="xs:string"/>
+                        <xs:element name="algoritmoHashCalcolato" type="xs:string"/>
+                        <xs:element name="encodingHashCalcolato" type="xs:string"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="hashVersato" minOccurs="0">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="valoreHashVersato" type="xs:string" minOccurs="0"/>
+                        <xs:element name="algoritmoHashVersato" type="xs:string" minOccurs="0"/>
+                        <xs:element name="encodingHashVersato" type="xs:string" minOccurs="0"/>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="documentoType">
+    <xs:sequence>
+	  <xs:element name="chiaveDocumento" type="xs:string"/>
+      <xs:element name="urnDocumento" type="xs:string"/>
+      <xs:element name="tipoDocumento" type="xs:string"/>
+      <xs:element name="descrizione" type="xs:string"  minOccurs="0"/>
+      <xs:element name="autore" type="xs:string" minOccurs="0"/>
+      <xs:element name="dataVersamento" type="xs:dateTime"/>      
+      <xs:element name="verificaFirme"  type="VerificaFirmeType"  minOccurs="0"/>
+      <xs:element name="componenti">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="componente" type="componenteType" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="unitaDocumentarieType">
+    <xs:sequence>
+      <xs:element name="unitaDocumentarieVersate">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="unitaDocumentaria" type="unitaDocumentariaType" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="unitaDocumentariaType">
+    <xs:sequence>
+      <xs:element name="urnUnitaDocumentaria" type="xs:string"/>
+      <xs:element name="tipologiaUnitaDocumentaria" type="xs:string"/>
+      <xs:element name="oggetto" type="xs:string" minOccurs="0"/>
+      <xs:element name="dataUnitaDocumentaria" type="xs:date" minOccurs="0"/>
+      <xs:element name="dataVersamento" type="xs:dateTime"/>
+      <xs:element name="forzaConservazione">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="si"/>
+            <xs:enumeration value="no"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="forzaAccettazione">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="si"/>
+            <xs:enumeration value="no"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="verificaFirme"  type="VerificaFirmeType"  minOccurs="0"/>
+      <xs:sequence>
+        <xs:annotation>
+          <xs:documentation>Almeno uno degli elementi child e' definito</xs:documentation>
+        </xs:annotation>
+        <xs:element name="documentoPrincipale" type="documentoType" minOccurs="0"/>
+        <xs:element name="allegati" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="allegato" type="documentoType" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="annessi" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="annesso" type="documentoType" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="annotazioni" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="annotazione" type="documentoType" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="contenutoSinteticoPerTipologiaUDType">
+    <xs:sequence>
+      <xs:element name="contenutoSinteticoTipologia" type="contenutoSinteticoTipologiaType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="contenutoSinteticoTipologiaType">
+    <xs:sequence>
+      <xs:element name="numeroUnitaDocumentarieVersate" type="xs:integer"/>
+      <xs:element name="numeroDocumentiVersati" type="xs:integer"/>
+      <xs:element name="numeroComponentiVersati" type="xs:integer"/>
+    </xs:sequence>
+	<xs:attribute ref="tipologia" use="required"/>
+  </xs:complexType>  
+  
+  <xs:element name="elencoversamento">
+    <xs:annotation>
+      <xs:documentation>XSD elenco di versamento</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="versioneElenco">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:pattern value="[1-9].[0-9]"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="enteProduttore">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ambiente" type="xs:string"/>
+              <xs:element name="ente" type="xs:string"/>
+              <xs:element name="struttura" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="identificativoElencoVersamento">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="idElenco" type="xs:string"/>
+              <xs:element name="urnElenco" type="xs:string"/>
+              <xs:element name="nomeElenco" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="descrizioneElencoVersamento">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="dataElenco" type="xs:dateTime"/>
+              <xs:element name="descrizioneElenco" type="xs:string"/>
+              <xs:element name="noteElenco" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="opzioniVerificaFirmeVersamento">
+          <xs:annotation>
+            <xs:documentation>Le opzioni sono relative alla verifica svolta al momento del versamento</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="controlloCrittografico">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="si"/>
+                    <xs:enumeration value="no"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="controlloCatenaTrusted">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="si"/>
+                    <xs:enumeration value="no"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="controlloCertificato">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="si"/>
+                    <xs:enumeration value="no"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="controlloCRL">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="si"/>
+                    <xs:enumeration value="no"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="listaCRL" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CRL" type="CRLType" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="listaCertificatiCA" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="certificatoCA" type="certificatoCAType" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="contenutoSinteticoElenco">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="numeroUnitaDocumentarieVersate" type="xs:integer"/>
+              <xs:element name="numeroDocumentiVersati" type="xs:integer"/>
+              <xs:element name="numeroComponentiVersati" type="xs:integer"/>
+              <xs:sequence>
+                <xs:element name="contenutoSinteticoPerTipologiaUnitaDocumentaria" type="contenutoSinteticoPerTipologiaUDType"/>
+              </xs:sequence>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="contenutoAnaliticoElenco">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="unitaDocumentarie" type="unitaDocumentarieType"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

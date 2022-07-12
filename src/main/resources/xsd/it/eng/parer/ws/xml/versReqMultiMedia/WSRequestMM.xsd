@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <!--  -->
+  <xs:complexType  name="ComponenteType">
+    <xs:sequence>
+      <xs:element name="ID" type="StringNonVuotoType"/>
+      <xs:element name="URNFile" type="StringNonVuotoType"/>
+      <xs:element name="PathOggetto" type="StringNonVuotoType" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="VerificaFirmeFormati" type="xs:boolean"/>
+      <xs:element name="ForzaFormato" maxOccurs="1" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="FormatoStandard" type="StringNonVuotoType"/>
+            <xs:element name="FormatoRappresentazioneEsteso" type="StringNonVuotoType"/>
+            <xs:element name="FormatoRappresentazioneCompatto" type="StringNonVuotoType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CalcolaHash" type="xs:boolean"/>
+      <xs:element name="ForzaHash" maxOccurs="1" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Hash" type="StringNonVuotoType"/>
+            <xs:element name="Algoritmo" type="StringNonVuotoType"/>
+            <xs:element name="Encoding" type="StringNonVuotoType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!--  -->
+  <xs:simpleType name="StringNonVuotoType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <xs:element name="IndiceMM">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Versione" type="xs:string"/>
+        <xs:element name="ApplicativoChiamante" type="StringNonVuotoType" maxOccurs="1" minOccurs="0"/>
+        <xs:element name="PathArchivioZip" type="StringNonVuotoType" maxOccurs="1" minOccurs="0"/>
+        <xs:element name="CodiceOggetto" type="StringNonVuotoType" maxOccurs="1" minOccurs="0"/>
+        <xs:element name="Componenti">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Componente" type="ComponenteType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

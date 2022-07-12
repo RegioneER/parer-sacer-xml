@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xs:complexType name="SerieType">
+		<xs:sequence>
+			<xs:element name="Codice" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="Denominazione" type="xs:string"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="Versione" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ContenutoSinteticoVolumeType">
+		<xs:sequence>
+			<xs:element name="NumeroUnitaDocumentarie" type="xs:integer"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="PrimaUnitaDocumentaria">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Codice" type="xs:string" minOccurs="1"
+							maxOccurs="1" />
+						<xs:element name="Data" type="xs:date" minOccurs="1"
+							maxOccurs="1" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UltimaUnitaDocumentaria">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Codice" type="xs:string" minOccurs="1"
+							maxOccurs="1" />
+						<xs:element name="Data" type="xs:date" minOccurs="1"
+							maxOccurs="1" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CriterioOrdinamentoType">
+		<xs:sequence>
+			<xs:element name="Nota" type="NotaType" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="NotaType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="Autore" type="xs:string" use="required"/>
+				<xs:attribute name="Data" type="xs:date" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="ContenutoAnaliticoVolumeType">
+		<xs:sequence>
+			<xs:element name="UnitaDocumentaria" type="unitaDocumentariaType"
+				minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="unitaDocumentariaType">
+		<xs:sequence>
+			<xs:element name="Codice" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="Chiave" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="Data" type="xs:date" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="UrnIndiceAIP" type="xs:string"
+				minOccurs="1" maxOccurs="1" />
+			<xs:element name="HashIndiceAIP" type="xs:string"
+				minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="IndiceVolumeSerie">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VersioneXSDIndiceVolumeSerie" type="xs:string"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="Serie" type="SerieType" minOccurs="1"
+					maxOccurs="1" />
+				<xs:element name="ProgressivoVolume" type="xs:integer"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="NumeroTotaleVolumi" type="xs:integer"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="ContenutoSinteticoVolume" type="ContenutoSinteticoVolumeType"
+					minOccurs="1" maxOccurs="1" />
+				<xs:element name="CriterioOrdinamento" type="CriterioOrdinamentoType"
+					minOccurs="0" maxOccurs="1" />
+				<xs:element name="ContenutoAnaliticoVolume" type="ContenutoAnaliticoVolumeType"
+					minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+
+

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:documentation xml:lang="it"> Definition of simple types </xs:documentation>
+  </xs:annotation>
+  <xs:simpleType name="TokenNonVuotoType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="IndiceAIPType">
+    <xs:sequence>
+      <xs:element name="VersioneIndiceAIP" type="TokenNonVuotoType" minOccurs="1"/>
+      <xs:element name="DataCreazione" type="xs:dateTime" minOccurs="1"/>
+      <xs:element name="Formato" type="xs:string" minOccurs="1"/>
+      <xs:element name="VersioneXSDIndiceAIP" type="TokenNonVuotoType" minOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ContenutoPacchettoArchiviazioneType">
+    <xs:sequence>
+      <xs:element name="Contenuto" type="ContenutoType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ContenutoType">
+    <xs:sequence>
+      <xs:element name="Urn" type="TokenNonVuotoType" minOccurs="1"/>
+      <xs:element name="Descrizione" type="TokenNonVuotoType" minOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MetadatiIntegratiSelfDescription" type="MetadatiIntegratiSelfDescriptionType"/>
+  <xs:complexType name="MetadatiIntegratiSelfDescriptionType">
+    <xs:sequence>
+      <xs:element name="IndiceAIP" type="IndiceAIPType"/>
+      <xs:element name="ContenutoPacchettoArchiviazione" type="ContenutoPacchettoArchiviazioneType"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+
+

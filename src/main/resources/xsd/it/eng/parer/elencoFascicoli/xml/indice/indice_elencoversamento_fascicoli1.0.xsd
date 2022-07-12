@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:attribute name="tipologia" type="xs:string"/>
+  <xs:complexType name="fascicoliType">
+    <xs:annotation>
+      <xs:documentation>Fascicoli ordinati per data di versamento</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="FascicoloVersato" type="fascicoloType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="fascicoloType">
+    <xs:sequence>
+      <xs:element name="UrnFascicolo" type="xs:string"/>
+	  <xs:element name="UrnIndiceSIPFascicolo" type="xs:string"/>
+      <xs:element name="HashIndiceSIP" type="xs:string"/>
+      <xs:element name="AlgoritmoHash" type="xs:string"/>
+      <xs:element name="EncodingHash" type="xs:string"/>
+	  <xs:element name="Anno" type="xs:integer" maxOccurs="1" minOccurs="1"/>
+      <xs:element name="Numero" type="xs:string" maxOccurs="1" minOccurs="1"/>
+      <xs:element name="DataVersamento" type="xs:dateTime"/>
+      <xs:element name="DataApertura" type="xs:date" minOccurs="0"/>
+      <xs:element name="DataChiusura" type="xs:date" minOccurs="0"/>
+      <xs:element name="TipoFascicolo" type="xs:string"/>
+      <xs:element name="Oggetto" type="xs:string" minOccurs="0"/>
+      <xs:element name="UrnRapportoVersamento" type="xs:string"/>
+      <xs:element name="NumeroUnitaDocumentarie" type="xs:integer"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="contenutoSinteticoElencoType">
+    <xs:sequence>
+      <xs:annotation>
+        <xs:documentation>tipologieFascicolo: denominazione della tipologia di fascicolo versate presenti in elenco, separate da ;</xs:documentation>
+      </xs:annotation>
+      <xs:element name="NumeroFascicoliVersati" type="xs:integer"/>
+      <xs:element name="TipologieFascicoloVersate" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElencoversamentoFascicoli">
+    <xs:annotation>
+      <xs:documentation>Versione XSD utilizzata per la produzione dell’elenco di versamento fascicoli</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="VersioneElenco">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:pattern value="[1-9].[0-9]"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="EnteProduttore">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:annotation>
+                <xs:documentation>UserID: elenco degli userid che hanno versato i fascicoli presenti in elenco, separati da ;</xs:documentation>
+              </xs:annotation>
+              <xs:element name="Ambiente" type="xs:string"/>
+              <xs:element name="Ente" type="xs:string"/>
+              <xs:element name="Struttura" type="xs:string"/>
+              <xs:element name="UserID" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DescrizioneElencoVersamento">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="UrnElenco" type="xs:string"/>
+              <xs:element name="IdElenco" type="xs:integer"/>   
+			  <xs:element name="DataAperturaElenco" type="xs:dateTime"/>			  
+              <xs:element name="DataChiusuraElenco" type="xs:dateTime"/>
+              <xs:element name="DataVersamentoIniziale" type="xs:dateTime"/>
+              <xs:element name="DataVersamentoFinale" type="xs:dateTime"/>
+			  <xs:element name="CriterioDiRaggruppamento" type="xs:string"/>
+              <xs:element name="DescrizioneCriterio" type="xs:string"/>
+              <xs:element name="MotivoChiusura" type="xs:string"/>              
+              <xs:element name="NoteElenco" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ContenutoSinteticoElenco" type="contenutoSinteticoElencoType"/>
+          
+        <xs:element name="ContenutoAnaliticoElenco">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FascicoliVersati" type="fascicoliType" minOccurs="0"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified">
+
+  <!--  -->
+  <xs:complexType  name="VersatoreType">
+    <xs:sequence>
+      <xs:element name="Ambiente" type="StringNVMax100Type" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Ente" type="StringNVMax100Type" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Struttura" type="StringNVMax100Type" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <!--  -->
+  <xs:complexType name="DescrizioneElencoIndiciAIPType">
+    <xs:sequence>
+      <xs:element name="Urn" type="StringNVMax254Type" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="DataCreazione" type="xs:dateTime" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <!--  -->
+  <xs:complexType name="ElencoVersamentoDiOrigineType">
+    <xs:sequence>
+      <xs:element name="UrnElenco" type="StringNVMax254Type" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="IdElenco" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="NomeElenco" type="StringNVMax100Type" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <!--  -->
+  <xs:complexType name="ContenutoSinteticoType">
+    <xs:sequence>
+      <xs:element name="NumeroIndiciAIP" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <!--  -->
+  <xs:complexType name="IndiceAIPType">
+    <xs:sequence>
+      <xs:element name="UrnIndiceAIP" type="StringNVMax254Type" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="HashIndiceAIP" type="StringNVMax254Type" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+
+                                  <!-- TIPI DATO GENERICI -->
+
+
+  <!--  -->
+  <xs:simpleType name="StringNVMax100Type">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="100"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!--  -->
+  <xs:simpleType name="StringNVMax254Type">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="254"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!--  -->
+  <xs:simpleType name="StringNVMax2000Type">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="1024"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!--  -->
+  <xs:simpleType name="IntMax4DgtType">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="9999"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+
+
+                                  <!-- ELEMENTI -->
+  <!--  -->
+  <xs:element name="ElencoIndiciAIP">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="VersioneElencoIndiciAIP" type="StringNVMax100Type" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="Versatore" type="VersatoreType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="DescrizioneElencoIndiciAIP" type="DescrizioneElencoIndiciAIPType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="ElencoVersamentoDiOrigine" type="ElencoVersamentoDiOrigineType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="ContenutoSintetico" type="ContenutoSinteticoType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="ContenutoAnalitico" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IndiceAIP" type="IndiceAIPType" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+
+
+
+

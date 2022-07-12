@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+
+	<xs:complexType name="VFFirmaCompType">
+		<xs:sequence>
+			<xs:element name="CdFirmatario" type="xs:string"></xs:element>
+			<xs:element name="NmCognomeFirmatario" type="xs:string"></xs:element>
+			<xs:element name="NmFirmatario" type="xs:string"></xs:element>
+			<xs:element name="DlDnFirmatario" type="xs:string"></xs:element>
+			<xs:element name="TiFirma" type="VFTipoFirmaType"></xs:element>
+			<xs:element name="TiEsitoContrConforme" type="xs:string"></xs:element>
+			<xs:element name="DsFirmaBase64" type="xs:string"></xs:element>
+			<xs:element name="DsAlgoFirma" type="xs:string"></xs:element>
+			<xs:element name="TiFormatoFirma" type="xs:string"></xs:element>
+			<xs:element name="DtFirma" type="xs:dateTime"></xs:element>
+			<xs:element name="TmRifTempUsato" type="xs:dateTime"></xs:element>
+			<xs:element name="TiEsitoVerifFirma" type="xs:string"></xs:element>
+			<xs:element name="DsMsgEsitoVerifFirma" type="xs:string"></xs:element>
+
+			<xs:element name="CertifFirmatario"
+				type="VFCertifFirmatarioType" minOccurs="0" maxOccurs="1"></xs:element>
+
+			<xs:element name="CertifCa" type="VFCertifCaType"
+				minOccurs="0" maxOccurs="1" />
+
+			<xs:element name="CrlCertifCa" type="VFCrlType"
+				minOccurs="0" maxOccurs="1" />
+				
+			<xs:element name="OcspCertifCa" type="VFOcspType"
+				minOccurs="0" maxOccurs="1" />	
+
+			<xs:element name="Crl" type="VFCrlType" minOccurs="0"
+				maxOccurs="1" />
+				
+			<xs:element name="Ocsp" type="VFOcspType" minOccurs="0"
+				maxOccurs="1" />				
+
+			<xs:element name="ContrFirmaComps"
+				type="VFContrFirmaCompType" minOccurs="0" maxOccurs="unbounded" />
+
+			<xs:element name="DsMsgEsitoContrConforme"
+				type="xs:string"></xs:element>
+
+			<xs:element name="TipoRiferimentoTemporaleUsato"
+				type="xs:string"></xs:element>
+
+			<xs:element name="ControfirmaFirmaFiglios"
+				type="VFFirmaCompType" minOccurs="0" maxOccurs="unbounded" />
+
+
+			<xs:element name="MarcaComps" type="VFMarcaCompType"
+				minOccurs="0" maxOccurs="unbounded" />
+
+			<!-- ADDITIONAL INFO - PARER-LIKE -->
+			<xs:element name="AdditionalInfo" minOccurs="0"
+				maxOccurs="1" type="VFAdditionalInfoFirmaCompType" />
+
+		</xs:sequence>
+		<xs:attribute name="PgFirma" type="xs:decimal"
+			use="required" />
+		<xs:attribute name="Id" type="xs:string" use="required" />
+	</xs:complexType>
+
+	<!-- -->
+	<xs:complexType name="VFContrFirmaCompType">
+		<xs:sequence>
+			<xs:element name="TiContr" type="VFTipoControlloType"></xs:element>
+			<xs:element name="TiEsitoContrFirma" type="xs:string"></xs:element>
+			<xs:element name="DsMsgEsitoContrFirma" type="xs:string"></xs:element>
+			<xs:element name="TipoFile" type="VFTipoFileType"></xs:element>
+			
+			<!-- ESITO SINTETICO -->
+			<xs:element name="EsitoControllo" type="xs:string"></xs:element>
+			<xs:element name="TipoFirma" type="VFTipoFirmaType"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- -->
+	<xs:complexType name="VFCertifCaType">
+		<xs:sequence>
+			<!-- EIDAS eu.europa.esig.dss.jaxb.diagnostic.XmlCertificate.getSerialNumber() -->
+			<xs:element name="NiSerialCertifCa" type="xs:decimal"></xs:element>
+			<!-- EIDAS eu.europa.esig.dss.jaxb.diagnostic.XmlCertificate.getNotBefore() -->
+			<xs:element name="DtIniValCertifCa" type="xs:dateTime"></xs:element>
+			<!-- EIDAS eu.europa.esig.dss.jaxb.diagnostic.XmlCertificate.getNotAfter() -->
+			<xs:element name="DtFinValCertifCa" type="xs:dateTime"></xs:element>
+			<xs:element name="DsSubjectKeyId" type="xs:string"></xs:element>
+			<xs:element name="DlDnIssuerCertifCa" type="xs:string"></xs:element>
+                        <xs:element name="DlDnSubjectCertifCa" type="xs:string"></xs:element>
+			<xs:element name="UrlDistribCrls"
+				type="VFUrlDistribCrlType" minOccurs="0" maxOccurs="unbounded" />
+				
+			<xs:element name="UrlDistribOcsps"
+				type="VFUrlDistribOcspType" minOccurs="0" maxOccurs="unbounded" />				
+
+			<xs:element name="FilePerFirma" type="VFFilePerFirmaType"
+				maxOccurs="1"></xs:element>
+
+			<!-- ADDITIONAL INFO - PARER-LIKE -->
+			<xs:element name="AdditionalInfo" minOccurs="0"
+				maxOccurs="1" type="VFAdditionalInfoCertifCaType" />
+
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- -->
+	<xs:complexType name="VFCertifFirmatarioType">
+		<xs:sequence>
+			<xs:element name="NiSerialCertifFirmatario"
+				type="xs:decimal"></xs:element>
+
+			<xs:element name="DtIniValCertifFirmatario"
+				type="xs:dateTime"></xs:element>
+
+			<xs:element name="DtFinValCertifFirmatario"
+				type="xs:dateTime"></xs:element>
+
+			<xs:element name="FilePerFirma" type="VFFilePerFirmaType"
+				maxOccurs="1"></xs:element>
+
+			<xs:element name="CertifCaFirmatario"
+				type="VFCertifCaType" minOccurs="1" maxOccurs="1"></xs:element>
+
+
+			<!-- ADDITIONAL INFO - PARER-LIKE -->
+			<xs:element name="AdditionalInfo" minOccurs="0"
+				maxOccurs="1" type="VFAdditionalInfoCertifFirmatarioType" />
+
+
+		</xs:sequence>
+	</xs:complexType>
+	
+    <!--  -->
+    <xs:complexType name="VFCertifOcspType">
+		<xs:sequence>
+			<!-- EIDAS eu.europa.esig.dss.jaxb.diagnostic.XmlCertificate.getSerialNumber() -->
+			<xs:element name="NiSerialCertifOcsp" type="xs:decimal"></xs:element>
+			<!-- EIDAS eu.europa.esig.dss.jaxb.diagnostic.XmlCertificate.getNotBefore() -->
+			<xs:element name="DtIniValCertifOcsp" type="xs:dateTime"></xs:element>
+			<!-- EIDAS eu.europa.esig.dss.jaxb.diagnostic.XmlCertificate.getNotAfter() -->
+			<xs:element name="DtFinValCertifOcsp" type="xs:dateTime"></xs:element>
+
+			<xs:element name="DlDnSubject" type="xs:string"></xs:element>
+
+			<xs:element name="CertifCa" type="VFCertifCaType"
+				maxOccurs="1"></xs:element>
+				
+			<xs:element name="FilePerFirma" type="VFFilePerFirmaType"
+				maxOccurs="1"></xs:element>
+
+			<!-- ADDITIONAL INFO - PARER-LIKE -->
+			<xs:element name="AdditionalInfo" minOccurs="0"
+				maxOccurs="1" type="VFAdditionalInfoCertifOcspType" />
+
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- -->
+	<xs:complexType name="VFCrlType">
+		<xs:sequence>
+			<xs:element name="DtIniCrl" type="xs:dateTime"></xs:element>
+			<xs:element name="DtScadCrl" type="xs:dateTime"></xs:element>
+
+			<xs:element name="NiSerialCrl" type="xs:decimal"></xs:element>
+			<!-- Ripristinare la CA -->
+			
+			<xs:element name="CertifCa" type="VFCertifCaType"
+				maxOccurs="1"></xs:element>
+				
+			<xs:element name="FilePerFirma" type="VFFilePerFirmaType"
+				maxOccurs="1"></xs:element>
+
+			<!-- ADDITIONAL INFO - PARER-LIKE -->
+			<xs:element name="AdditionalInfo" minOccurs="0"
+				maxOccurs="1" type="VFAdditionalInfoCrlType" />
+
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- -->
+	<xs:complexType name="VFOcspType">
+		<xs:sequence>
+			
+			<xs:element name="DsCertifIssuername" type="xs:string"></xs:element>
+			<xs:element name="DsCertifSerialBase64" type="xs:string"></xs:element>
+			<xs:element name="DsCertifSkiBase64" type="xs:string"></xs:element>
+			
+			<xs:element name="CertifOcsp" type="VFCertifOcspType"
+				maxOccurs="1"></xs:element>
+				
+			<xs:element name="FilePerFirma" type="VFFilePerFirmaType"
+				maxOccurs="1"></xs:element>
+
+			<!-- ADDITIONAL INFO - PARER-LIKE -->
+			<xs:element name="AdditionalInfo" minOccurs="0"
+				maxOccurs="1" type="VFAdditionalInfoOcspType" />
+
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- -->
+	<xs:complexType name="VFUrlDistribCrlType">
+		<xs:sequence>
+			<xs:element name="DlUrlDistribCrl" type="xs:string"></xs:element>
+			<xs:element name="NiOrdUrlDistribCrl" type="xs:decimal"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- -->
+	<xs:complexType name="VFUrlDistribOcspType">
+		<xs:sequence>
+			<xs:element name="DlUrlDistribOcsp" type="xs:string"></xs:element>
+			<xs:element name="NiOrdUrlDistribOcsp" type="xs:decimal"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- -->
+
+	<xs:complexType name="VFFilePerFirmaType">
+		<xs:sequence>
+			<xs:element name="BlFilePerFirma" type="xs:hexBinary"></xs:element>
+			<xs:element name="TiFilePerFirma" type="VFTipoFileType"></xs:element>
+			<xs:element name="NmFileDownload" type="xs:string"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- -->
+
+	<xs:complexType name="VFMarcaCompType">
+		<xs:sequence>
+			<xs:element name="DsAlgoMarca" type="xs:string"></xs:element>
+			<xs:element name="DsMarcaBase64" type="xs:string"></xs:element>
+			<xs:element name="DsMsgEsitoContrConforme"
+				type="xs:string"></xs:element>
+			<xs:element name="DsMsgEsitoVerifMarca" type="xs:string"></xs:element>
+			<xs:element name="DtScadMarca" type="xs:dateTime"></xs:element>
+			<xs:element name="TmMarcaTemp" type="xs:dateTime"></xs:element>
+			<xs:element name="TiFormatoMarca" type="xs:string"></xs:element>
+
+			<xs:element name="CertifTsa" type="VFCertifCaType"
+				minOccurs="0" maxOccurs="1"></xs:element>
+
+			<xs:element name="CrlTsa" type="VFCrlType" minOccurs="0"
+				maxOccurs="1" />
+	
+			<xs:element name="OcspTsa" type="VFOcspType" minOccurs="0"
+				maxOccurs="1" />
+				
+			<xs:element name="ContrMarcaComps"
+				type="VFContrMarcaCompType" minOccurs="0" maxOccurs="unbounded" />
+
+			
+			<xs:element name="TiEsitoContrConforme" type="xs:string"></xs:element>
+			<xs:element name="TiEsitoVerifMarca" type="xs:string"></xs:element>
+
+			
+			<!-- ADDITIONAL INFO - PARER-LIKE -->
+			<xs:element name="AdditionalInfo" minOccurs="0"
+				maxOccurs="1" type="VFAdditionalInfoMarcaCompType" />
+
+
+		</xs:sequence>
+		<xs:attribute name="PgMarca" type="xs:decimal"
+			use="required" />
+		<xs:attribute name="Id" type="xs:string" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="VFContrMarcaCompType">
+		<xs:sequence>
+			<xs:element name="DsMsgEsitoContrMarca" type="xs:string"></xs:element>
+			<xs:element name="TiContr" type="VFTipoControlloType"></xs:element>
+			<xs:element name="TiEsitoContrMarca" type="xs:string"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- BUSINESS LOGIC { -->
+	<xs:complexType name="VFAdditionalInfoBustaType">
+		<xs:sequence>
+			<xs:element name="IdFormatoFileStandard" type="xs:long" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VFAdditionalInfoFirmaCompType">
+		<xs:sequence>
+			<xs:element name="TiRifTempUsato" type="xs:string"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VFAdditionalInfoCertifCaType">
+		<xs:sequence>
+			<xs:element name="IdCertifCa" type="xs:positiveInteger" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType
+		name="VFAdditionalInfoCertifFirmatarioType">
+		<xs:sequence>
+			<xs:element name="IdCertifFirmatario"
+				type="xs:positiveInteger" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType
+		name="VFAdditionalInfoCertifOcspType">
+		<xs:sequence>
+			<xs:element name="IdCertifOcsp"
+				type="xs:positiveInteger" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="VFAdditionalInfoCrlType">
+		<xs:sequence>
+			<xs:element name="IdCrl" type="xs:positiveInteger"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="VFAdditionalInfoOcspType">
+		<xs:sequence>
+			<xs:element name="IdOcsp" type="xs:positiveInteger"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VFAdditionalInfoMarcaCompType">
+		<xs:sequence>
+			<xs:element name="TiMarcaTemp" type="xs:string"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VFAdditionalInfoWrapperType">
+		<xs:sequence>
+			<xs:element name="IsDetached" type="xs:boolean" />
+			<xs:element name="TikaMime" type="xs:string" />
+			<xs:element name="ServiceCode" type="xs:string" />
+			<xs:element name="ReportContent" type="xs:anyType" minOccurs="0" />
+			<xs:element name="IdServizioFirmaCompDoc" type="xs:long" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<!-- } BUSINESS LOGIC -->
+
+	<!-- -->
+	<xs:element name="VerificaFirmaWrapper">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VFBusta" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="FirmaComps" type="VFFirmaCompType"
+								minOccurs="0" maxOccurs="unbounded" />
+							<xs:element name="MarcaComps" type="VFMarcaCompType"
+								minOccurs="0" maxOccurs="unbounded" />
+
+							<!-- ADDITIONAL INFO - PARER-LIKE -->
+							<xs:element name="AdditionalInfo" minOccurs="1"
+								maxOccurs="1" type="VFAdditionalInfoBustaType" />
+
+						</xs:sequence>
+						<xs:attribute name="PgBusta" type="xs:decimal"
+							use="required" />
+					</xs:complexType>
+				</xs:element>
+				
+				<!-- ADDITIONAL INFO - PARER-LIKE -->
+				<xs:element name="AdditionalInfo"
+					type="VFAdditionalInfoWrapperType" />
+
+			</xs:sequence>
+			<xs:attribute name="ServiceVersion" type="xs:string" use="required" />
+			<xs:attribute name="LibraryVersion" type="xs:string" use="required" />
+			<xs:attribute name="SelfLink" type="xs:string" use="required" />
+            <xs:attribute name="StartDate" type="xs:dateTime" use="required" />
+            <xs:attribute name="EndDate" type="xs:dateTime" use="required" />
+            <!-- (Nota: almeno una firma individuata in fase di validazione / Individua se il documento è firmato o meno) -->
+            <xs:attribute name="SignsDetected" type="xs:boolean" use="optional" />            
+		</xs:complexType>
+	</xs:element>
+
+	<!-- -->
+	<xs:simpleType name="VFTipoFileType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="CERTIF_CA" />
+			<xs:enumeration value="CERTIF_FIRMATARIO" />
+			<xs:enumeration value="CRL" />
+			<xs:enumeration value="OCSP" />		
+			<xs:enumeration value="CERTIF_OCSP" />				
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<!-- -->
+	<xs:simpleType name="VFTipoFirmaType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="AVANZATA" />
+			<xs:enumeration value="QUALIFICATA" />
+			<xs:enumeration value="DIGITALE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- -->
+	
+	<xs:simpleType name="VFTipoControlloType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="CRITTOGRAFICO" />
+			<xs:enumeration value="CERTIFICATO" />
+			<xs:enumeration value="CATENA_TRUSTED" />
+			<xs:enumeration value="CRL" />
+			<xs:enumeration value="CATENA_TRUSTED_ABILITATO" />
+			<xs:enumeration value="CRITTOGRAFICO_ABILITATO" />
+			<xs:enumeration value="OCSP" />			
+		</xs:restriction>
+	</xs:simpleType>
+	
+</xs:schema>

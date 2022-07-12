@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+ 
+  <xs:element name="Elencoversamento">
+    <xs:annotation>
+      <xs:documentation>Versione XSD utilizzata per la produzione elenco di versamento</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="VersioneElenco">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:pattern value="[1-9].[0-9]"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        
+        <xs:element name="EnteProduttore">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Ambiente" type="xs:string" minOccurs="1" maxOccurs="1"/>
+              <xs:element name="Ente" type="xs:string" minOccurs="1" maxOccurs="1"/>
+              <xs:element name="Struttura" type="xs:string" minOccurs="1" maxOccurs="1"/>
+              <xs:element name="UserID" type="xs:string" minOccurs="1" maxOccurs="1">
+				  <xs:annotation>
+					<xs:documentation>UserID: elenco degli userid che hanno versato unita doc o aggiunto documenti o versato aggiornamenti presenti in elenco, separati da ;</xs:documentation>
+				  </xs:annotation>
+			  </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        
+        <xs:element name="DescrizioneElencoVersamento">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="UrnElenco" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						il tag contiene Urn:Ambiente:Ente:Struttura:identificatore elenco
+					</xs:documentation>
+				</xs:annotation>
+			  </xs:element>
+              <xs:element name="IdElenco" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+              <xs:element name="NomeElenco" type="xs:string" minOccurs="1" maxOccurs="1"/>
+              <xs:element name="DataChiusuraElenco" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+              <xs:element name="DataVersamentoIniziale" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+              <xs:element name="DataVersamentoFinale" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+              <xs:element name="DescrizioneCriterio" type="xs:string" minOccurs="1" maxOccurs="1"/>
+              <xs:element name="MotivoChiusura" minOccurs="1" maxOccurs="1">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="Scadenza_limite_temporale"/>
+                    <xs:enumeration value="Raggiunto_numero_massimo_componenti"/>
+                    <xs:enumeration value="Manuale"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NoteElenco" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        
+        <xs:element name="ContenutoSinteticoElenco">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="UnitaDocumentarieVersate" type="contenutoSinteticoUDVersateType"/>
+              <xs:element name="UnitaDocumentarieAggiornate" type="contenutoSinteticoUDAggiornateType"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        
+        <xs:element name="ContenutoAnaliticoElenco">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="UnitaDocumentarieVersate" type="unitaDocumentarieType" minOccurs="0"/>
+              <xs:element name="UnitaDocumentarieAggiornate" type="unitaDocumentarieAggiornateType" minOccurs="0"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  
+  <xs:complexType name="contenutoSinteticoUDVersateType">
+    <xs:sequence>
+      <xs:element name="NumeroUnitaDocumentarieVersate" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="TipologieUnitaDocumentaria" type="xs:string" minOccurs="1" maxOccurs="1">
+		<xs:annotation>
+			<xs:documentation>
+				TipologieUnitaDocumentaria: denominazione della tipologia di UD versate presenti in elenco, separate da ;
+				TipologieDocumentoPrincipale: denominazione dei tipi di doc principali versati presenti in elenco, separate da ;
+				TipologieRegistro: denominazione dei registri principali versati presenti in elenco, separate da ;
+			</xs:documentation>
+		</xs:annotation>
+	  </xs:element>
+      <xs:element name="TipologieDocumentoPrincipale" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="TipologieRegistro" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="NumeroDocumentiVersati" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="NumeroComponentiVersati" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+  <xs:complexType name="contenutoSinteticoUDAggiornateType">
+    <xs:sequence>
+      <xs:element name="NumeroUnitaDocumentarieAggiornate" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="NumeroDocumentiAggiunti" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="NumeroComponentiDocumentiAggiunti" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="NumeroAggiornamentiMetadatiUnitaDocumentaria" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>  
+  
+  
+  <xs:complexType name="unitaDocumentarieType">
+    <xs:annotation>
+      <xs:documentation>UD ordinate per data di versamento</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="UnitaDocumentariaVersata" type="unitaDocumentariaType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  
+  <xs:complexType name="unitaDocumentariaType">
+    <xs:sequence>
+      <xs:element name="UrnUnitaDocumentaria" type="xs:string" minOccurs="1" maxOccurs="1">
+		<xs:annotation>
+			<xs:documentation>
+					il tag contiene Urn:Ambiente:Ente:Struttura:Registro-Anno-Numero
+			</xs:documentation>
+		</xs:annotation>
+	  </xs:element>
+      <xs:element name="DataVersamento" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="UrnRapportoVersamento" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="TipologiaRegistro" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="TipologiaUnitaDocumentaria" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Oggetto" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="DataUnitaDocumentaria" type="xs:date" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="TipoDocumentoPrincipale" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="NumeroAllegati" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="NumeroAnnessi" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="NumeroAnnotazioni" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+      <xs:sequence>
+        <xs:element name="Documenti" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:annotation>
+				<xs:documentation>
+						documenti ordinati urn del documento con progressivo paddato a sx con 5 zeri
+				</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+              <xs:element name="Documento" type="documentoType"  minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:sequence>
+  </xs:complexType>
+
+
+ <xs:complexType name="documentoType">
+    <xs:sequence>
+      <xs:element name="UrnDocumento" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>
+					il tag contiene Urn:Ambiente:Ente:Struttura:Registro-Anno-Numero-tipo elemento-progressivo
+			</xs:documentation>
+		</xs:annotation>
+	  </xs:element>
+      <xs:element name="Componenti" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+		  <xs:annotation>
+				<xs:documentation>
+						componenti ordinati numero ordine componente
+				</xs:documentation>
+			</xs:annotation>
+		  <xs:sequence>
+            <xs:element name="Componente" type="componenteType"  minOccurs="1" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+    
+ 
+  <xs:complexType name="componenteType">
+    <xs:sequence>
+      <xs:element name="UrnCalcolato" type="xs:string" minOccurs="0" maxOccurs="1">
+		<xs:annotation>
+			<xs:documentation>
+					il tag contiene Urn:Ambiente:Ente:Struttura:Registro-Anno-Numero-tipo elemento-progr doc:progr struttura:numero ordine comp
+			</xs:documentation>
+		</xs:annotation>
+	  </xs:element>
+      <xs:element name="Hash" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	  <xs:element name="AlgoritmoHash" type="xs:token" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Encoding" type="xs:token" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="sottoComponenti" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="sottoComponente" minOccurs="1" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="UrnCalcolato" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                  <xs:element name="Hash" type="xs:string" minOccurs="0" maxOccurs="1"/>
+				  <xs:element name="AlgoritmoHash" type="xs:token" minOccurs="0" maxOccurs="1"/>
+				  <xs:element name="Encoding" type="xs:token" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+ 
+
+  <xs:complexType name="unitaDocumentarieAggiornateType">
+    <xs:sequence>
+      <xs:annotation>
+      <xs:documentation>ud ordinate per data versamento documento aggiunto / aggiornamento metadati</xs:documentation>
+    </xs:annotation>
+      <xs:element name="UnitaDocumentariaAggiornata" type="unitaDocumentariaAggiornataType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  
+  <xs:complexType name="unitaDocumentariaAggiornataType">
+    <xs:sequence>
+		<xs:element name="UrnUnitaDocumentariaAggiornata" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>
+					il tag contiene Urn:Ambiente:Ente:Struttura:Registro-Anno-Numero
+				</xs:documentation>
+			</xs:annotation>
+		</xs:element>
+		<xs:sequence>
+        <xs:element name="Aggiornamenti" minOccurs="1" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+				<xs:choice>
+					<xs:element name="DocumentoAggiunto" type="documentoAggiuntoType" minOccurs="1" maxOccurs="1"/>
+                    <xs:element name="AggiornamentoUnitaDocumentaria" type="aggiornamentoUnitaDocumetariaType" minOccurs="1" maxOccurs="1"/>
+                </xs:choice>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+   <xs:complexType name="documentoAggiuntoType">
+    <xs:sequence>
+      <xs:element name="UrnDocumento" type="xs:string" minOccurs="1" maxOccurs="1">
+		<xs:annotation>
+			<xs:documentation>
+				il tag contiene Urn:Ambiente:Ente:Struttura:Registro-Anno-Numero-tipo elemento-progr doc
+			</xs:documentation>
+		</xs:annotation>
+	  </xs:element>	
+	  <xs:element name="DataVersamento" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="UrnRapportoVersamento" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Componenti" minOccurs="1" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Componente" type="componenteType" minOccurs="1" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+   <xs:complexType name="aggiornamentoUnitaDocumetariaType">
+    <xs:sequence>
+      <xs:element name="UrnAggiornamentoUnitaDocumentaria" type="xs:string" minOccurs="1" maxOccurs="1">
+		<xs:annotation>
+			<xs:documentation>
+				il tag contiene Ambiente:Ente:Struttura:Registro-Anno-Numero:progr aggiornamento
+			</xs:documentation>
+		</xs:annotation>
+	  </xs:element>	
+	  <xs:element name="DataVersamento" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="UrnRapportoVersamento" type="xs:string" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="Hash" type="xs:string" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="AlgoritmoHash" type="xs:token" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="Encoding" type="xs:token" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+    
+</xs:schema>
+

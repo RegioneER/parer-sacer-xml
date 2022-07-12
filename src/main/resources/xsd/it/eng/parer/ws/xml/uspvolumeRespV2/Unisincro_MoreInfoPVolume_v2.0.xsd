@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:documentation xml:lang="it"> Definition of simple types </xs:documentation>
+  </xs:annotation>
+  <xs:element name="MetadatiIntegratiPdA" type="MetadatiIntegratiPdAType"/>
+  <xs:simpleType name="TokenNonVuotoType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:attribute name="tipoNota">
+    <xs:simpleType>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Note del produttore" />
+            <xs:enumeration value="Note del conservatore" />
+        </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+  <xs:attribute name="id" type="xs:token"/>
+  <xs:complexType name="DatiSpecificiType_PVolume">
+    <xs:sequence>
+      <xs:element name="VersioneDatiSpecifici" type="xs:string"/>
+      <xs:any minOccurs="0" maxOccurs="unbounded" processContents="skip"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MetadatiIntegratiPdAType">
+    <xs:sequence>
+	  <xs:element name="Versatore" type="VersatoreType" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="Chiave" type="ChiaveType" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="UrnUD" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="DataAcquisizione" type="xs:dateTime" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="TipologiaUnitaDocumentaria" type="xs:token"/>
+      <xs:element name="ProfiloUnitaDocumentaria" type="ProfiloUnitaDocumentariaType" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="ProfiloArchivistico" type="ProfiloArchivisticoType" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="ProfiloNormativo" type="ProfiloNormativoType" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="NoteUnitaDocumentaria" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="DatiSpecifici" type="DatiSpecificiType_PVolume" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="SistemaDiMigrazione" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="DatiSpecificiMigrazione" type="DatiSpecificiType_PVolume" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="DocumentiCollegati" type="DocumentoCollegatoType" maxOccurs="1" minOccurs="0"/>     
+      <xs:element name="Composizione" type="ComposizioneType" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="Note" type="NotaType" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProfiloUnitaDocumentariaType">
+    <xs:sequence>
+      <xs:element name="Oggetto" type="xs:string" nillable="true"/>
+      <xs:element name="Data" type="xs:date" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="VersatoreType">
+    <xs:sequence>
+      <xs:element name="Ambiente" type="xs:string" nillable="true"/>
+      <xs:element name="Ente" type="xs:string" nillable="true"/>
+      <xs:element name="Struttura" type="xs:string" nillable="true"/>
+	  <xs:element name="UserID" type="xs:string" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocumentoCollegatoType">
+    <xs:sequence>
+      <xs:element name="DocumentoCollegato"  minOccurs="1" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ChiaveCollegamento" type="ChiaveType"/>
+            <xs:element name="UrnUDCollegata" type="xs:string" nillable="true"/>
+            <xs:element name="DescrizioneCollegamento" type="xs:string" nillable="true"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProfiloArchivisticoType">
+    <xs:sequence>
+      <xs:element name="FascicoloPrincipale" type="CamiciaFascicoloType"/>
+      <xs:element name="FascicoliSecondari"  maxOccurs="1" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="FascicoloSecondario" type="CamiciaFascicoloType" minOccurs="1" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CamiciaFascicoloType">
+    <xs:sequence>
+      <xs:element name="Classifica" type="xs:token" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="Fascicolo" type="FascicoloType" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="SottoFascicolo" type="FascicoloType" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FascicoloType">
+    <xs:sequence>
+      <xs:element name="Identificativo"  type="xs:token" nillable="true"/>
+      <xs:element name="Oggetto" type="xs:string" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProfiloNormativoType">
+    <xs:sequence>
+      <xs:any processContents="skip" />
+    </xs:sequence>
+    <xs:attribute name="versione" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:complexType name="ChiaveType">
+    <xs:sequence>
+      <xs:element name="Numero" type="TokenNonVuotoType"/>
+      <xs:element name="Anno" type="xs:nonNegativeInteger"/>
+      <xs:element name="Registro" type="TokenNonVuotoType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ComposizioneType">
+    <xs:sequence>
+      <xs:element name="NumeroAllegati" type="xs:nonNegativeInteger" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="NumeroAnnessi" type="xs:nonNegativeInteger" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="NumeroAnnotazioni" type="xs:nonNegativeInteger" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NotaType">
+    <xs:sequence>
+      <xs:element name="NotaUnitaDocumentaria"  maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Nota" type="xs:string" nillable="true"/>
+            <xs:element name="DataRegistrazione" type="xs:dateTime" nillable="true"/>
+            <xs:element name="Utente" type="xs:string" nillable="true"/>
+          </xs:sequence>
+          <xs:attribute ref="tipoNota" use="required" />
+          <xs:attribute ref="id" use="required" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+
+
+
+
+

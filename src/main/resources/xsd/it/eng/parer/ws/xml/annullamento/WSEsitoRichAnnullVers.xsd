@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified">
+
+  <!-- versione 1.3 aggiunge enum FASCICOLO in TipoVersamentoType -->
+  
+  <!--  -->
+  <xs:complexType  name="EsitoRichiestaType">
+    <xs:sequence>
+      <xs:element name="CodiceEsito" type="CodiceEsitoType"/>
+      <xs:element name="CodiceErrore" type="xs:string" minOccurs="0"/>
+      <xs:element name="MessaggioErrore" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="CodiceEsitoType">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="POSITIVO"/>
+      <xs:enumeration value="NEGATIVO"/>
+      <xs:enumeration value="WARNING"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+
+
+  <!--  -->
+  <xs:complexType  name="VersatoreType">
+    <xs:sequence>
+      <xs:element name="Ambiente" type="StringNVMax100Type" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Ente" type="StringNVMax100Type" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Struttura" type="StringNVMax100Type" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="UserID" type="StringNVMax100Type" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <!--  -->
+  <xs:complexType name="RichiestaType">
+    <xs:sequence>
+      <xs:element name="Codice" type="StringNVMax200Type" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Descrizione" type="StringNVMax254Type" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Motivazione" type="StringNVMax2000Type" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Immediata" type="xs:boolean" minOccurs="0" maxOccurs="1" default="false"/>
+      <xs:element name="ForzaAnnullamento" type="xs:boolean" minOccurs="0" maxOccurs="1" default="false"/>
+      <xs:element name="RichiestaDaPreIngest" type="xs:boolean" minOccurs="0" maxOccurs="1" default="false"/>
+      <xs:element name="NumeroVersamentiDaAnnullare" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="NumeroVersamentiNonAnnullabili" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+<!--  -->
+  <xs:group name="SharedElements">
+    <xs:sequence>
+      <xs:element name="TipoVersamento" minOccurs="1" maxOccurs="1" type="TipoVersamentoType" default="UNITA' DOCUMENTARIA"/>
+      <xs:element name="Numero" type="StringNVMax100Type" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Anno" type="IntMax4DgtType" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:group>
+  <xs:group name="UnitaDocElements">
+    <xs:sequence>
+      <xs:element name="TipoRegistro" type="StringNVMax100Type" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:group>
+  <xs:group name="FascElements">
+    <xs:sequence>
+    </xs:sequence>
+  </xs:group>
+
+  <!--  -->
+  <xs:complexType name="VersamentoDaAnnullareType">     
+    <xs:sequence>
+      <xs:group ref="SharedElements"/>
+      <xs:choice>
+          <xs:group ref="UnitaDocElements"/>
+          <xs:group ref="FascElements"/>
+      </xs:choice>
+      <xs:element name="Stato" type="StringNVMax100Type" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="ErroriRilevati" type="xs:string" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+
+
+
+                                  <!-- TIPI DATO GENERICI -->
+
+
+  <!--  -->
+  <xs:simpleType name="StringNVMax100Type">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="100"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!--  -->
+  <xs:simpleType name="StringNVMax200Type">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="200"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!--  -->
+  <xs:simpleType name="StringNVMax254Type">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="254"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!--  -->
+  <xs:simpleType name="StringNVMax2000Type">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="1024"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!--  -->
+  <xs:simpleType name="IntMax4DgtType">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="9999"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <!--  -->
+    <xs:simpleType name="TipoVersamentoType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="UNITA' DOCUMENTARIA"/>
+      <xs:enumeration value="FASCICOLO"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+
+                                  <!-- ELEMENTI -->
+  <!--  -->
+  <xs:element name="EsitoRichiestaAnnullamentoVersamenti">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="VersioneXmlEsito" type="StringNVMax100Type" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="VersioneXmlRichiesta" type="StringNVMax100Type" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="DataRichiesta" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="EsitoRichiesta" type="EsitoRichiestaType" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="Versatore" type="VersatoreType" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="Richiesta" type="RichiestaType" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="VersamentiDaAnnullare" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="VersamentoDaAnnullare" type="VersamentoDaAnnullareType" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:documentation xml:lang="it"> Definition of simple types </xs:documentation>
+  </xs:annotation>
+  <xs:element name="MetadatiIntegratiFile" type="MetadatiIntegratiFileType"/>
+  <xs:simpleType name="TokenNonVuotoType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+    <xs:simpleType name="TokenNVMax254Type">
+    <xs:restriction base="xs:token">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="254"/>
+    </xs:restriction>
+  </xs:simpleType>
+    <xs:simpleType name="TokenNVMax1024Type">
+    <xs:restriction base="xs:token">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="1024"/>
+    </xs:restriction>
+  </xs:simpleType>
+    <xs:simpleType name="ECEsitoExtType">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="POSITIVO"/>
+      <xs:enumeration value="NEGATIVO"/>
+      <xs:enumeration value="WARNING"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TipoSupportoType">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="FILE"/>
+      <xs:enumeration value="RIFERIMENTO"/>
+      <xs:enumeration value="METADATI"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="DatiSpecificiType_File">
+    <xs:sequence>
+      <xs:element name="VersioneDatiSpecifici" type="xs:string"/>
+      <xs:any minOccurs="0" maxOccurs="unbounded" processContents="skip"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MetadatiIntegratiFileType">
+    <xs:sequence>
+      <xs:element name="Urn" type="TokenNonVuotoType" minOccurs="0"/>
+      <xs:element name="DimensioneFile" type="xs:nonNegativeInteger" minOccurs="0"/>
+      <xs:element name="SvoltoControlloFormatoVerificaFirma" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="Firmato" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="EsitoVerificheFirme" type="xs:string" minOccurs="0"/>
+      <xs:element name="MessaggioEsitoVerificheFirme" type="xs:string" minOccurs="0"/>
+      <xs:element name="SvoltoControlloCalcoloHash" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="Hash" type="xs:string" minOccurs="0"/>
+      <xs:element name="AlgoritmoHash" type="xs:token" minOccurs="0"/>
+      <xs:element name="Encoding" type="xs:token" minOccurs="0"/>
+      <xs:element name="FormatoRappresentazione" type="xs:string" minOccurs="0"/>
+      <xs:element name="DescrizioneFormato" type="xs:string" minOccurs="0"/>
+      <xs:element name="FormatoRappresentazioneEsteso" type="xs:string" minOccurs="0"/>
+      <xs:element name="FormatoComponenteSbustato" type="xs:string" minOccurs="0"/>
+      <xs:element name="EsitoControlloFormato" type="xs:string" minOccurs="0"/>
+      <xs:element name="MessaggioEsitoControlloFormato" type="xs:string" minOccurs="0"/>
+      <xs:element name="TipoComponente" type="xs:token" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="TipoSupporto" type="TipoSupportoType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="TipoRappresentazione" type="TokenNonVuotoType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="UtilizzoDataFirmaPerRifTemp" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="RiferimentoTemporale" type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="DescrizioneRiferimentoTemporale" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="OrdinePresentazione" type="xs:token" minOccurs="0"/>
+      <xs:element name="NumeroComponente" type="xs:nonNegativeInteger" minOccurs="0"/>
+      <xs:element name="UrnVersato" type="TokenNVMax1024Type" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="NomeComponente" type="xs:token" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="FormatoVersato" type="TokenNonVuotoType"  minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Mimetype" type="TokenNonVuotoType"  minOccurs="0" maxOccurs="1"/>
+      <xs:element name="HashVersato" type="TokenNVMax254Type" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="IDComponente" type="TokenNVMax254Type" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="DatiSpecifici" type="DatiSpecificiType_File" maxOccurs="1" minOccurs="0"/>
+	  <xs:element name="SistemaDiMigrazione" type="xs:token" minOccurs="0"/>
+      <xs:element name="DatiSpecificiMigrazione" type="DatiSpecificiType_File" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+
+
+

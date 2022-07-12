@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:complexType name="MetadatiIntegratiProducerType">
+    <xs:sequence>
+      <xs:element name="Ambiente" type="AmbienteType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Ente" type="EnteType" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="Struttura" type="StrutturaType" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="AmbienteType">
+    <xs:sequence>
+      <xs:element name="NomeAmbiente" type="xs:string" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="DescrizioneAmbiente" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="EnteType">
+    <xs:sequence>
+      <xs:element name="NomeEnte" type="xs:string" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="DescrizioneEnte" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="StrutturaType">
+    <xs:sequence>
+      <xs:element name="NomeStruttura" type="xs:string" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="DescrizioneStruttura" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+  <xs:element name="MetadatiIntegratiProducer" type="MetadatiIntegratiProducerType"/>
+
+</xs:schema>
+
+
+

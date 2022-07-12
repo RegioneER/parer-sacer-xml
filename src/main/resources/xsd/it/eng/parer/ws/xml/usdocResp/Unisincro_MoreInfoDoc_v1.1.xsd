@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:documentation xml:lang="it"> Definition of simple types </xs:documentation>
+  </xs:annotation>
+  <xs:element name="MetadatiIntegratiDoc" type="MetadatiIntegratiDocType"/>
+  <xs:simpleType name="TokenNonVuotoType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ProfiloDocumentoType">
+    <xs:sequence>
+      <xs:element name="Descrizione" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="Autore" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="StrutturaDocumento" type="xs:string" maxOccurs="1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DatiSpecificiType">
+    <xs:sequence>
+      <xs:element name="VersioneDatiSpecifici" type="xs:string"/>
+      <xs:any minOccurs="0" maxOccurs="unbounded" processContents="skip"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MetadatiIntegratiDocType">
+    <xs:sequence>
+      <xs:element name="ChiaveDocumento" type="xs:token"/>
+      <xs:element name="TipoDocumento" type="xs:string" maxOccurs="1" minOccurs="1"/>
+      <xs:element name="Elemento" type="xs:string" maxOccurs="1" minOccurs="1"/>
+      <xs:element name="DataAcquisizione" type="xs:dateTime" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="ProfiloDocumento" type="ProfiloDocumentoType" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="NoteDocumento" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="DatiSpecifici" type="DatiSpecificiType" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="SistemaDiMigrazione" type="xs:string" maxOccurs="1" minOccurs="0"/>
+      <xs:element name="DatiSpecificiMigrazione" type="DatiSpecificiType" maxOccurs="1" minOccurs="0"/>     
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+
+
+

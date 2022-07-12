@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:complexType name="MetadatiIntegratiFileType">
+    <xs:sequence>
+	  <xs:element name="NumeroUnitaDocumentarieVolume" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="UnitaDocumentariePresentiVolume" type="UnitaDocumentariePresentiVolumeType" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <xs:complexType name="UnitaDocumentariePresentiVolumeType">
+    <xs:sequence>
+	  <xs:element name="PrimaUnitaDocumentaria">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="Codice" type="xs:string" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="Data" type="xs:date" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="UltimaUnitaDocumentaria">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="Codice" type="xs:string" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="Data" type="xs:date" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+  <xs:element name="MetadatiIntegratiFile" type="MetadatiIntegratiFileType"/>
+  
+  
+</xs:schema>
+
