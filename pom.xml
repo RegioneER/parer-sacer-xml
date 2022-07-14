@@ -7,26 +7,22 @@
     </parent>
     <groupId>it.eng.parer</groupId>
     <artifactId>sacer-xml</artifactId>
-    <version>2.2.19-SNAPSHOT</version>
+    <version>2.2.17</version>
     <name>sacer-xml</name>
     <description>Progetto SACER-XML</description>
+    <url>https://nexus.ente.regione.emr.it/repository/parer-site/sacer-xml/${project.version}/</url>
+
+    <distributionManagement>
+	    <site>
+            <id>site</id>
+            <url>dav:https://nexus.ente.regione.emr.it/repository/parer-site/sacer-xml/${project.version}</url>
+        </site>
+    </distributionManagement>
 
     <scm>
-        <developerConnection>scm:git:https://github.com/RegioneER/parer.sacer.xml.git</developerConnection>
-        <tag>HEAD</tag>
+        <developerConnection>scm:git:git@gitlab.ente.regione.emr.it:parer/sacer-xml.git</developerConnection>
+        <tag>sacer-xml-2.2.17</tag>
     </scm>
-
-    <repositories>
-        <repository>
-            <id>github</id>
-            <url>https://maven.pkg.github.com/RegioneER/parer.sacer.parent</url>            
-        </repository>
-		<repository>
-			<id>central</id>
-			<url>https://repo1.maven.org/maven2</url>
-		</repository>              
-	</repositories>
-   
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sonar.projectVersion>${project.version}</sonar.projectVersion>
@@ -314,8 +310,8 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versfascicolo</schemaDirectory>
-                            <schemaFiles>WSRequestIndiceSIPFascicolo.xsd</schemaFiles>
+                            <schemaDirectory>${project.basedir}/src/main/xsd/fascicoli/it/eng/parer/ws/xml/versfascicolo</schemaDirectory>
+                            <schemaFiles>WSRequestIndiceSIPFascicolo_1.0.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.versfascicolo</packageName>
                             <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
@@ -328,38 +324,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versfascicoloresp</schemaDirectory>
-                            <schemaFiles>WSResponseRapportoVersamentoFascicolo.xsd</schemaFiles>
+                            <schemaDirectory>${project.basedir}/src/main/xsd/fascicoli/it/eng/parer/ws/xml/versfascicoloresp</schemaDirectory>
+                            <schemaFiles>WSResponseRapportoVersamentoFascicolo_1.0.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.versfascicoloresp</packageName>
-                            <removeOldOutput>false</removeOldOutput>
-                            <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
-                        </configuration>
-                    </execution>
-                    
-                     <execution>
-                        <id>xjc-fascicoliReqV2</id>
-                        <goals>
-                            <goal>xjc</goal>
-                        </goals>
-                        <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versfascicoloV2</schemaDirectory>
-                            <schemaFiles>WSRequestIndiceSIPFascicolo.xsd</schemaFiles>
-                            <packageName>it.eng.parer.ws.xml.versfascicoloV2</packageName>
-                            <removeOldOutput>false</removeOldOutput>
-                            <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>xjc-fascicoliRespV2</id>
-                        <goals>
-                            <goal>xjc</goal>
-                        </goals>
-                        <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versfascicolorespV2</schemaDirectory>
-                            <schemaFiles>WSResponseRapportoVersamentoFascicolo.xsd</schemaFiles>
-                            <packageName>it.eng.parer.ws.xml.versfascicolorespV2</packageName>
                             <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
                             <forceRegenerate>true</forceRegenerate>
@@ -652,7 +619,7 @@
             </resource>
         </resources>
     </build>
-
+    
     <reporting>
         <plugins>
           	<plugin>
