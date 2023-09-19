@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:complexType name="MetadatiIntegratiVdCType">
+    <xs:sequence>
+	  <xs:element name="ModalitaAcquisizione" type="ModalitaAcquisizioneType" minOccurs="0" maxOccurs="1"/>
+	  <xs:element name="AmbitiEContenuto" type="AmbitiEContenutoType" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="CriterioOrdinamento" type="CriterioOrdinamentoType" minOccurs="0" maxOccurs="1"/>	  
+      <xs:element name="TempoConservazione" type="TempoConservazioneType" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="Note" type="NoteType" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ModalitaAcquisizioneType">
+    <xs:sequence>
+	  <xs:element name="Nota" type="NotaType" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AmbitiEContenutoType">
+    <xs:sequence>
+	  <xs:element name="Nota" type="NotaType" minOccurs="0" maxOccurs="1"/>
+	  <xs:element name="Consistenza" type="ConsistenzaType" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="SelezioneUnitaDocumentarie" type="SelezioneUnitaDocumentarieType" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="DescrizioneTipologieContenuto" type="DescrizioneTipologieContenutoType" minOccurs="1" maxOccurs="1"/>	 
+    </xs:sequence>
+  </xs:complexType>
+  
+  
+  <!-- Consistenza -->
+    
+  <xs:complexType name="ConsistenzaType">
+    <xs:sequence>
+	  <xs:element name="UnitaDocumentariePresenti" type="UnitaDocumentariePresentiType" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="UnitaDocumentarieMancanti" type="UnitaDocumentarieMancantiType" minOccurs="0" maxOccurs="1"/>
+	  <xs:element name="UnitaDocumentarieNonProdotte" type="UnitaDocumentarieNonProdotteType" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="UnitaDocumentariePresentiType">
+    <xs:sequence>
+	  <xs:element name="NumeroUnitaDocumentarie" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="PrimaUnitaDocumentaria">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="Codice" type="xs:string" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="Data" type="xs:date" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="UltimaUnitaDocumentaria">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="Codice" type="xs:string" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="Data" type="xs:date" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="UnitaDocumentarieMancantiType">
+	<xs:sequence>
+	  <xs:element name="Lacuna" type="LacunaType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="UnitaDocumentarieNonProdotteType">
+	<xs:sequence>
+	  <xs:element name="Lacuna" type="LacunaType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="LacunaType">
+    <xs:sequence>
+        <xs:choice>
+            <xs:element name="DescrizioneLacuna" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:sequence>
+				<xs:element name="ProgressivoInizialeLacuna" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="ProgressivoFinaleLacuna" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+			</xs:sequence>	
+        </xs:choice>
+		<xs:element name="NoteLacuna" type="xs:string" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+
+  
+  <!-- Selezione unita doc -->
+  
+  <xs:complexType name="SelezioneUnitaDocumentarieType">
+    <xs:sequence>
+	  <xs:element name="ModalitaSelezione"  type="ModalitaSelezioneType" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="CriterioSelezione"  type="CriterioSelezioneType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ModalitaSelezioneType">
+    <xs:sequence>
+       <xs:element name="Selezione" type="SelezioneType" minOccurs="1" maxOccurs="1"/>
+       <xs:choice>
+            <xs:element name="AnnoSelezione" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+			<xs:sequence>
+				<xs:element name="PeriodoSelezione" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="FrequenzaPeriodoSelezione" type="FrequenzaPeriodoType" minOccurs="1" maxOccurs="1"/>
+			</xs:sequence>
+			<xs:sequence>
+				<xs:element name="DataInizioSelezione" type="xs:date" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="DataFineSelezione" type="xs:date" minOccurs="1" maxOccurs="1"/>
+			</xs:sequence>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="SelezioneType">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="Annuale"/>
+      <xs:enumeration value="Infra_annuale"/>
+	  <xs:enumeration value="Range_date"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="FrequenzaPeriodoType">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="DECADE"/>
+      <xs:enumeration value="QUINDICINA"/>
+	  <xs:enumeration value="MESE"/>
+	  <xs:enumeration value="BIMESTRE"/>
+	  <xs:enumeration value="TRIMESTRE"/>
+	  <xs:enumeration value="QUADRIMESTRE"/>
+	  <xs:enumeration value="SEMESTRE"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="CriterioSelezioneType">
+    <xs:sequence>
+	  <xs:element name="TipoRegistro"  type="xs:string" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="TipoUnitaDocumentaria"  type="xs:string" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="TipiDocumentoPrincipale"  type="TipiDocumentoPrincipaleType" minOccurs="0" maxOccurs="1"/>
+	  <xs:element name="FiltriDatiSpecifici"  type="FiltriDatiSpecificiType" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TipiDocumentoPrincipaleType">
+    <xs:sequence>
+	  <xs:element name="TipoDocumentoPrincipale"  type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="FiltriDatiSpecificiType">
+    <xs:sequence>
+	  <xs:element name="FiltroDatiSpecifici"  type="FiltroDatiSpecificiType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="FiltroDatiSpecificiType">
+    <xs:sequence>
+      <xs:element name="DatoSpecifico"  type="xs:string" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="Operatore"  type="xs:string" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="Valore"  type="xs:string" minOccurs="0" maxOccurs="1"/>
+	  <xs:element name="DefinizioniDatoSpecifico"  type="DefinizioniDatoSpecificoType" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DefinizioniDatoSpecificoType">
+    <xs:sequence>
+	  <xs:element name="DefinizioneDatoSpecifico"  type="DefinizioneDatoSpecificoType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DefinizioneDatoSpecificoType">
+    <xs:sequence>
+      <xs:choice>
+          <xs:element name="TipoUnitaDocumentaria"  type="xs:string" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="TipoDocumentoPrincipale"  type="xs:string" minOccurs="1" maxOccurs="1"/>
+      </xs:choice>
+      <xs:element name="ListaVersioniXsd"  type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+  
+  <!-- Descrizioni tipi  -->
+    
+  <xs:complexType name="DescrizioneTipologieContenutoType">
+    <xs:sequence>
+	  <xs:element name="TipiRegistro" type="TipiRegistroType" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="TipiUnitaDocumentaria"  type="TipiUnitaDocumentariaType" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="TipiDocumento"  type="TipiDocumentoType" minOccurs="1" maxOccurs="1"/>
+	</xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="TipiRegistroType">
+    <xs:sequence>
+	  <xs:element name="TipoRegistro" type="TipoRegistroType"  minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="TipoRegistroType">
+    <xs:sequence>
+		<xs:element name="CodiceTipoRegistro" type="xs:string" minOccurs="1"  maxOccurs="1"/>
+		<xs:element name="DescrizioneTipoRegistro" type="xs:string" minOccurs="1"  maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="TipiUnitaDocumentariaType">
+    <xs:sequence>
+	  <xs:element name="TipoUnitaDocumentaria" type="TipoUnitaDocumentariaType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="TipoUnitaDocumentariaType">
+    <xs:sequence>
+		<xs:element name="NomeTipoUnitaDocumentaria" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="DescrizioneTipoUnitaDocumentaria" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="TipiDocumentoType">
+    <xs:sequence>
+	  <xs:element name="TipoDocumento" type="TipoDocumentoType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+ 
+  <xs:complexType name="TipoDocumentoType">
+    <xs:sequence>
+	  <xs:element name="NomeTipoDocumento" type="xs:string" minOccurs="1" maxOccurs="1"/>
+	  <xs:element name="DescrizioneTipoDocumento" type="xs:string" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CriterioOrdinamentoType">
+    <xs:sequence>
+	  <xs:element name="Nota" type="NotaType" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+  <xs:complexType name="TempoConservazioneType">
+    <xs:sequence>
+		<xs:element name="TipoConservazione" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="AnniConservazione" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="DataScarto" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="Nota" type="NotaType" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="NoteType">
+    <xs:sequence>
+		<xs:element name="NoteConservatore" type="NoteConservatoreType" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="NoteProduttore" type="NoteProduttoreType" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="NoteConservatoreType">
+    <xs:sequence>
+		<xs:element name="Nota" type="NotaType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="NoteProduttoreType">
+    <xs:sequence>
+		<xs:element name="Nota" type="NotaType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+	<xs:complexType name="NotaType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="Autore" type="xs:string" use="required"/>
+				<xs:attribute name="Data" type="xs:date" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+  
+  
+  
+  <xs:element name="MetadatiIntegratiVdC" type="MetadatiIntegratiVdCType"/>
+  
+  
+</xs:schema>
+
+

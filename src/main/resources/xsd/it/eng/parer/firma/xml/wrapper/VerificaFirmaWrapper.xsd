@@ -278,7 +278,7 @@
 	<!-- BUSINESS LOGIC { -->
 	<xs:complexType name="VFAdditionalInfoBustaType">
 		<xs:sequence>
-			<xs:element name="IdFormatoFileStandard" type="xs:long" />
+			<xs:element name="IdFormatoFileStandard" type="xs:positiveInteger" />
 		</xs:sequence>
 	</xs:complexType>
 
