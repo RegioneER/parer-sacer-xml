@@ -3,16 +3,16 @@
     <parent>
         <groupId>it.eng.parer</groupId>
         <artifactId>parer-pom</artifactId>
-        <version>3.0.17</version>
+        <version>4.2.0</version>
     </parent>
-    <groupId>it.eng.parer</groupId>
+
     <artifactId>sacer-xml</artifactId>
-    <version>2.2.18-SNAPSHOT</version>
+    <version>2.6.1-SNAPSHOT</version>
     <name>sacer-xml</name>
     <description>Progetto SACER-XML</description>
 
     <scm>
-        <developerConnection>scm:git:https://github.com/RegioneER/parer.sacer.xml.git</developerConnection>
+        <developerConnection>scm:git:https://github.com/RegioneER/parer-sacer-xml.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
@@ -56,10 +56,8 @@
                         <configuration>
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/elencoFascicoli/xml/indice</schemaDirectory>
                             <schemaFiles>indice_elencoversamento_fascicoli1.0.xsd</schemaFiles>
-                            <packageName>it.eng.parer.elencoFascicoli.xml.indice</packageName>
-                            <removeOldOutput>false</removeOldOutput>
-                            <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
+                            <packageName>it.eng.parer.elencoFascicoli.xml.indice</packageName>                            
+                            <clearOutputDir>false</clearOutputDir>                            
                         </configuration>
                     </execution>
                     
@@ -74,10 +72,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/usmainRespV2</schemaDirectory>
                             <schemaFiles>Unisincro_PIndex.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.usmainRespV2</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
-                            
                             <bindingDirectory>${project.basedir}/src/main/resources/xjb/</bindingDirectory>
                             <bindingFiles>global.xjb</bindingFiles>
                             <arguments>-extension -Xnamespace-prefix</arguments>
@@ -94,9 +89,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/usselfdescRespV2</schemaDirectory>
                             <schemaFiles>Unisincro_MoreInfoSelfDescription_v2.0.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.usselfdescRespV2</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
                     <execution>
@@ -108,9 +101,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/uspvolumeRespV2</schemaDirectory>
                             <schemaFiles>Unisincro_MoreInfoPVolume_v2.0.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.uspvolumeRespV2</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
                     <!-- end EVO#20972 -->
@@ -125,9 +116,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/usmainResp</schemaDirectory>
                             <schemaFiles>Unisincro_vers.02.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.usmainResp</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
 
@@ -141,9 +130,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/usdocResp</schemaDirectory>
                             <schemaFiles>Unisincro_MoreInfoDoc_v1.1.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.usdocResp</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
                     <execution>
@@ -155,9 +142,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/usfileResp</schemaDirectory>
                             <schemaFiles>Unisincro_MoreInfoFile_v1.1.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.usfileResp</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
                     <execution>
@@ -169,9 +154,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/usselfdescResp</schemaDirectory>
                             <schemaFiles>Unisincro_MoreInfoSelfDescription_v1.1.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.usselfdescResp</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
                     <execution>
@@ -183,9 +166,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/usvdcResp</schemaDirectory>
                             <schemaFiles>Unisincro_MoreInfoVdC_v1.1.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.usvdcResp</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
 
@@ -199,9 +180,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/serie/xml/serfileResp</schemaDirectory>
                             <schemaFiles>IndiceAIPSerie_MoreInfo_File_v1.0.xsd</schemaFiles>
                             <packageName>it.eng.parer.serie.xml.serfileResp</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
                     <execution>
@@ -213,9 +192,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/serie/xml/serprodResp</schemaDirectory>
                             <schemaFiles>IndiceAIPSerie_MoreInfo_Producer_v1.0.xsd</schemaFiles>
                             <packageName>it.eng.parer.serie.xml.serprodResp</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
                     <execution>
@@ -227,9 +204,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/serie/xml/servdcResp</schemaDirectory>
                             <schemaFiles>IndiceAIPSerie_MoreInfo_VdC_v1.0.xsd</schemaFiles>
                             <packageName>it.eng.parer.serie.xml.servdcResp</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
                     <execution>
@@ -241,9 +216,43 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/serie/xml/serselfdescResp</schemaDirectory>
                             <schemaFiles>IndiceAIPSerieUd_MoreInfo_SelfDescription_v1.0.xsd</schemaFiles>
                             <packageName>it.eng.parer.serie.xml.serselfdescResp</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xjc-serselfdescRespV2</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/serie/xml/serselfdescRespV2</schemaDirectory>
+                            <schemaFiles>Unisincro_MoreInfoSelfDescription_v2.0.xsd</schemaFiles>
+                            <packageName>it.eng.parer.serie.xml.serselfdescRespV2</packageName>
+                            <clearOutputDir>false</clearOutputDir>
+                        </configuration>
+                    </execution>
+                     <execution>
+                        <id>xjc-servdcRespV2</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/serie/xml/servdcRespV2</schemaDirectory>
+                            <schemaFiles>Unisincro_MoreInfoPVolume_v2.0.xsd</schemaFiles>
+                            <packageName>it.eng.parer.serie.xml.servdcRespV2</packageName>
+                            <clearOutputDir>false</clearOutputDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xjc-serfileRespV2</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/serie/xml/serfileRespV2</schemaDirectory>
+                            <schemaFiles>Unisincro_MoreInfoFile_v1.1.xsd</schemaFiles>
+                            <packageName>it.eng.parer.serie.xml.serfileRespV2</packageName>
+                            <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
 
@@ -257,12 +266,11 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/elencoFascicoli/xml/aip</schemaDirectory>
                             <schemaFiles>ElencoIndiciAIPFascicoli.xsd</schemaFiles>
                             <packageName>it.eng.parer.aipelencoFascicoli.xml.indice</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
 
+                    <!-- MEV#26576 -->
                     <!-- aip fascicoli -->
                     <execution>
                         <id>xjc-aipFascicoliUsmainResp</id>
@@ -273,9 +281,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/aipFascicoli/xml/usmainResp</schemaDirectory>
                             <schemaFiles>Unisincro_vers.02.xsd</schemaFiles>
                             <packageName>it.eng.parer.aipFascicoli.xml.usmainResp</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
                     <execution>
@@ -287,9 +293,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/aipFascicoli/xml/usselfdescResp</schemaDirectory>
                             <schemaFiles>Unisincro_MoreInfoSelfDescription_v1.0.xsd</schemaFiles>
                             <packageName>it.eng.parer.aipFascicoli.xml.usselfdescResp</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
                     <execution>
@@ -301,11 +305,57 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/aipFascicoli/xml/usprofascResp</schemaDirectory>
                             <schemaFiles>ProfiloCompletoFascicolo_1.0.xsd</schemaFiles>
                             <packageName>it.eng.parer.aipFascicoli.xml.usprofascResp</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
+                    
+                    <!-- aip fascicoli v2.0 -->
+                    <execution>
+                        <id>xjc-aipFascicoliUsmainRespV2</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/aipFascicoli/xml/usmainRespV2</schemaDirectory>
+                            <schemaFiles>Unisincro_PIndex.xsd</schemaFiles>
+                            <packageName>it.eng.parer.aipFascicoli.xml.usmainRespV2</packageName>
+                            <clearOutputDir>false</clearOutputDir>
+                            <bindingDirectory>${project.basedir}/src/main/resources/xjb/</bindingDirectory>
+                            <bindingFiles>global_fasc.xjb</bindingFiles>
+                            <arguments>-extension -Xnamespace-prefix</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xjc-aipFascicoliUsselfdescRespV2</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/aipFascicoli/xml/usselfdescRespV2</schemaDirectory>
+                            <schemaFiles>Unisincro_MoreInfoSelfDescriptionFA_v2.0.xsd</schemaFiles>
+                            <packageName>it.eng.parer.aipFascicoli.xml.usselfdescRespV2</packageName>
+                            <clearOutputDir>false</clearOutputDir>
+                            <bindingDirectory>${project.basedir}/src/main/resources/xjb/</bindingDirectory>
+                            <bindingFiles>usselfdescRespV2.xjb</bindingFiles>
+                            <arguments>-extension -Xnamespace-prefix -Xannotate -XremoveAnnotation</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xjc-aipFascicoliUsprofascRespV2</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/aipFascicoli/xml/usprofascRespV2</schemaDirectory>
+                            <schemaFiles>Unisincro_MoreInfoPVolumeFA_v2.0.xsd</schemaFiles>
+                            <packageName>it.eng.parer.aipFascicoli.xml.usprofascRespV2</packageName>
+                            <clearOutputDir>false</clearOutputDir>
+                            <bindingDirectory>${project.basedir}/src/main/resources/xjb/</bindingDirectory>
+                            <bindingFiles>usprofascRespV2.xjb</bindingFiles>
+                            <arguments>-extension -Xnamespace-prefix -Xannotate -XremoveAnnotation</arguments>
+                       </configuration>
+                    </execution>
+                    <!-- end MEV#26576 -->
 
 
                     <execution>
@@ -314,12 +364,10 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/xsd/fascicoli/it/eng/parer/ws/xml/versfascicolo</schemaDirectory>
-                            <schemaFiles>WSRequestIndiceSIPFascicolo_1.0.xsd</schemaFiles>
+                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versfascicolo</schemaDirectory>
+                            <schemaFiles>WSRequestIndiceSIPFascicolo.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.versfascicolo</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
                     <execution>
@@ -328,12 +376,35 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/xsd/fascicoli/it/eng/parer/ws/xml/versfascicoloresp</schemaDirectory>
-                            <schemaFiles>WSResponseRapportoVersamentoFascicolo_1.0.xsd</schemaFiles>
+                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versfascicoloresp</schemaDirectory>
+                            <schemaFiles>WSResponseRapportoVersamentoFascicolo.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.versfascicoloresp</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
+                        </configuration>
+                    </execution>
+                    
+                     <execution>
+                        <id>xjc-fascicoliReqV2</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versfascicoloV2</schemaDirectory>
+                            <schemaFiles>WSRequestIndiceSIPFascicolo.xsd</schemaFiles>
+                            <packageName>it.eng.parer.ws.xml.versfascicoloV2</packageName>
+                            <clearOutputDir>false</clearOutputDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xjc-fascicoliRespV2</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versfascicolorespV2</schemaDirectory>
+                            <schemaFiles>WSResponseRapportoVersamentoFascicolo.xsd</schemaFiles>
+                            <packageName>it.eng.parer.ws.xml.versfascicolorespV2</packageName>
+                            <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
 
@@ -347,9 +418,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versReqStato</schemaDirectory>
                             <schemaFiles>WSRequestStato_1.2.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.versReqStato</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
                     <execution>
@@ -361,9 +430,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versReqStatoMM</schemaDirectory>
                             <schemaFiles>WSRequestStatoMM.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.versReqStatoMM</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
                     <execution>
@@ -375,11 +442,35 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versRespStato</schemaDirectory>
                             <schemaFiles>WSResponseStato.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.versRespStato</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
+                    <!-- EVO#13993 -->
+                    <execution>
+                        <id>xjc-versReqStatoFasc</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versReqStatoFasc</schemaDirectory>
+                            <schemaFiles>WSRequestStatoFasc.xsd</schemaFiles>
+                            <packageName>it.eng.parer.ws.xml.versReqStatoFasc</packageName>
+                            <clearOutputDir>false</clearOutputDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>xjc-versRespStatoFasc</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versRespStatoFasc</schemaDirectory>
+                            <schemaFiles>WSResponseStatoFasc.xsd</schemaFiles>
+                            <packageName>it.eng.parer.ws.xml.versRespStatoFasc</packageName>
+                            <clearOutputDir>false</clearOutputDir>
+                        </configuration>
+                    </execution>
+                    <!-- end EVO#13993 -->
 
                     <!-- ws annulla versamento -->
                     <execution>
@@ -391,9 +482,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/annullamento</schemaDirectory>
                             <schemaFiles>WSRichAnnullVers.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.richAnnullVers</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
                     <execution>
@@ -405,9 +494,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/annullamento</schemaDirectory>
                             <schemaFiles>WSEsitoRichAnnullVers.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.esitoRichAnnullVers</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
 
@@ -421,9 +508,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/elenco/xml/indice</schemaDirectory>
                             <schemaFiles>indice_elencoversamento3.1.xsd</schemaFiles>
                             <packageName>it.eng.parer.elenco.xml.indice</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
 
@@ -437,9 +522,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/serie/xml/indiceVolumeSerie</schemaDirectory>
                             <schemaFiles>IndiceVolumeSerie.xsd</schemaFiles>
                             <packageName>it.eng.parer.serie.xml.indiceVolumeSerie</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
 
@@ -453,9 +536,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/elenco/xml/aip</schemaDirectory>
                             <schemaFiles>ElencoIndiciAIP.xsd</schemaFiles>
                             <packageName>it.eng.parer.elenco.xml.aip</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
                     <execution>
@@ -467,9 +548,7 @@
                             <schemaDirectory>${project.basedir}/src/main/xsd/titolario</schemaDirectory>
                             <schemaFiles>GestioneTitolario_xsd_1.0.xsd</schemaFiles>
                             <packageName>it.eng.parer.titolario.xml</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
 
@@ -483,9 +562,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versReq</schemaDirectory>
                             <schemaFiles>WSRequestVersamento.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.versReq</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
                     <execution>
@@ -497,9 +574,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versReqMultiMedia</schemaDirectory>
                             <schemaFiles>WSRequestMM.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.versReqMultiMedia</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
                     <execution>
@@ -511,9 +586,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versResp</schemaDirectory>
                             <schemaFiles>WSResponseVersamento.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.versResp</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
                     <!-- ws aggiornamento metadati di versamento -->
@@ -524,11 +597,9 @@
                         </goals>
                         <configuration>
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versAggiornamentoReq</schemaDirectory>
-                            <schemaFiles>WSRequestAggiornamentoVersamento_1.4.xsd</schemaFiles>
+                            <schemaFiles>WSRequestAggiornamentoVersamento_1.5.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.versUpdReq</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
                     <execution>
@@ -538,11 +609,9 @@
                         </goals>
                         <configuration>
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versAggiornamentoResp</schemaDirectory>
-                            <schemaFiles>WSResponseAggiornamentoVersamento_1.4.xsd</schemaFiles>
+                            <schemaFiles>WSResponseAggiornamentoVersamento_1.5.xsd</schemaFiles>
                             <packageName>it.eng.parer.ws.xml.versUpdResp</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
                     <!-- verifica firma -->
@@ -555,9 +624,7 @@
                             <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/firma/xml/wrapper</schemaDirectory>
                             <schemaFiles>VerificaFirmaWrapper.xsd</schemaFiles>
                             <packageName>it.eng.parer.firma.xml</packageName>
-                            <removeOldOutput>false</removeOldOutput>
                             <clearOutputDir>false</clearOutputDir>
-                            <forceRegenerate>true</forceRegenerate>
                         </configuration>
                     </execution>
                 </executions>
@@ -566,6 +633,11 @@
                         <groupId>org.jvnet.jaxb2_commons</groupId>
                         <artifactId>jaxb2-namespace-prefix</artifactId>
                         <version>1.3</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jvnet.jaxb2_commons</groupId>
+                        <artifactId>jaxb2-basics-annotate</artifactId>
+                        <version>1.1.0</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -610,20 +682,16 @@
 					<!-- Esclusione dai javadoc delle classi generate da jaxb -->
 					<excludePackageNames>it.eng.parer.*</excludePackageNames>
 				</configuration>
-			</plugin>
+			</plugin>			
         </plugins>
         <resources>
-            <!-- Copia i file XSD dei fascicoli, per la validazione -->
-            <resource>
-                <directory>src/main/xsd/fascicoli</directory>
-            </resource>
             <!-- Copia i file XSD che saranno utilizzati in fase di validazione -->
             <resource>
                 <directory>src/main/resources/xsd</directory>
             </resource>
         </resources>
     </build>
-    
+
     <reporting>
         <plugins>
           	<plugin>
