@@ -10,19 +10,23 @@
     <version>2.7.1-SNAPSHOT</version>
     <name>sacer-xml</name>
     <description>Progetto SACER-XML</description>
-    <url>https://nexus.ente.regione.emr.it/repository/parer-site/sacer-xml/${project.version}/</url>
-
-    <distributionManagement>
-	    <site>
-            <id>site</id>
-            <url>dav:https://nexus.ente.regione.emr.it/repository/parer-site/sacer-xml/${project.version}</url>
-        </site>
-    </distributionManagement>
 
     <scm>
-        <developerConnection>scm:git:git@gitlab.ente.regione.emr.it:parer/lib/sacer-xml.git</developerConnection>
+        <developerConnection>scm:git:https://github.com/RegioneER/parer-sacer-xml.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
+
+    <repositories>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/RegioneER/parer.sacer.parent</url>            
+        </repository>
+		<repository>
+			<id>central</id>
+			<url>https://repo1.maven.org/maven2</url>
+		</repository>              
+	</repositories>
+   
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sonar.projectVersion>${project.version}</sonar.projectVersion>
