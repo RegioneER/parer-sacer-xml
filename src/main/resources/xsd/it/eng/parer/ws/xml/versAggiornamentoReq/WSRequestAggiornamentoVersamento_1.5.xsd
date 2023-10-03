@@ -159,7 +159,7 @@
 <!--  -->
 	<xs:complexType name="DatiSpecificiType">
 		<xs:sequence>
-			<xs:element name="VersioneDatiSpecifici" type="StringNVMax1024Type">
+			<xs:element name="VersioneDatiSpecifici" type="StringNVMax1024Type" nillable="true">
 				<xs:annotation>
 					<xs:documentation>tag aggiornabile</xs:documentation>
 				</xs:annotation>
@@ -493,7 +493,7 @@
 	<!--  -->
 	<xs:simpleType name="StringNVMax1024Type">
 		<xs:restriction base="xs:string">
-			<xs:minLength value="1"/>
+			<xs:minLength value="0"/>
 			<xs:maxLength value="1024"/>
 		</xs:restriction>
 	</xs:simpleType>
@@ -556,13 +556,13 @@
         <!--  -->
 	<!-- ELEMENTI -->
 	<!--  -->
-	
 	<xs:complexType name="UnitaDocumentariaType">
 		<xs:sequence>
 			<xs:element name="Intestazione" type="IntestazioneType"  minOccurs="1" maxOccurs="1"/>
 			<xs:element name="Configurazione" type="ConfigType" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="ProfiloArchivistico" type="ProfiloArchivisticoType" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="ProfiloUnitaDocumentaria" type="ProfiloUnitaDocumentariaType" minOccurs="0" maxOccurs="1"/>
+
                         <xs:element name="ProfiloNormativo" type="ProfiloNormativoType" minOccurs="0" maxOccurs="1" />
 			<!--  -->
 			<xs:element name="DatiSpecifici" type="DatiSpecificiType" minOccurs="0" maxOccurs="1" nillable="true"/>
@@ -598,8 +598,9 @@
 			</xs:element>
 		</xs:sequence>		
 	</xs:complexType>
+
 	<!--  -->
-	
+
 	<xs:complexType name="AggiornamentoUnitaDocumentariaType">
 		<xs:sequence>
 			<xs:element name="Intestazione" type="IntestazioneType"  maxOccurs="1" minOccurs="1">
@@ -629,12 +630,15 @@
                             </xs:annotation>
                         </xs:element>
 			<!--  -->	
+
 			<xs:element name="DatiSpecifici" type="DatiSpecificiType" minOccurs="0" maxOccurs="1" nillable="true">
 				<xs:annotation>
 					<xs:documentation>tag aggiornabile; se non definito si intende che non si deve aggiornare</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+
 			<!--  -->
+
 			<xs:element name="DatiSpecificiMigrazione" type="DatiSpecificiType" minOccurs="0" maxOccurs="1" nillable="true">
 				<xs:annotation>
 					<xs:documentation>tag aggiornabile; se non definito si intende che non si deve aggiornare</xs:documentation>
@@ -662,6 +666,7 @@
 					<xs:documentation>Numero annotazioni presenti nel SIP di aggiornamento metadati</xs:documentation>
 				</xs:annotation>	
 			</xs:element>
+
 			<!--  -->
 			<xs:element name="DocumentoPrincipale" type="DocumentoType" minOccurs="0" maxOccurs="1">
 				<xs:annotation>
@@ -731,3 +736,4 @@
 	</xs:element>
 	<!--  -->
 </xs:schema>
+
