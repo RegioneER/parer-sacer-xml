@@ -69,7 +69,6 @@
 			<xs:element name="TiContr" type="VFTipoControlloType"></xs:element>
 			<xs:element name="TiEsitoContrFirma" type="xs:string"></xs:element>
 			<xs:element name="DsMsgEsitoContrFirma" type="xs:string"></xs:element>
-			<xs:element name="TipoFile" type="VFTipoFileType"></xs:element>
 			
 			<!-- ESITO SINTETICO -->
 			<xs:element name="EsitoControllo" type="xs:string"></xs:element>
@@ -95,9 +94,6 @@
 			<xs:element name="UrlDistribOcsps"
 				type="VFUrlDistribOcspType" minOccurs="0" maxOccurs="unbounded" />				
 
-			<xs:element name="FilePerFirma" type="VFFilePerFirmaType"
-				maxOccurs="1"></xs:element>
-
 			<!-- ADDITIONAL INFO - PARER-LIKE -->
 			<xs:element name="AdditionalInfo" minOccurs="0"
 				maxOccurs="1" type="VFAdditionalInfoCertifCaType" />
@@ -117,12 +113,8 @@
 			<xs:element name="DtFinValCertifFirmatario"
 				type="xs:dateTime"></xs:element>
 
-			<xs:element name="FilePerFirma" type="VFFilePerFirmaType"
-				maxOccurs="1"></xs:element>
-
 			<xs:element name="CertifCaFirmatario"
 				type="VFCertifCaType" minOccurs="1" maxOccurs="1"></xs:element>
-
 
 			<!-- ADDITIONAL INFO - PARER-LIKE -->
 			<xs:element name="AdditionalInfo" minOccurs="0"
@@ -146,9 +138,6 @@
 
 			<xs:element name="CertifCa" type="VFCertifCaType"
 				maxOccurs="1"></xs:element>
-				
-			<xs:element name="FilePerFirma" type="VFFilePerFirmaType"
-				maxOccurs="1"></xs:element>
 
 			<!-- ADDITIONAL INFO - PARER-LIKE -->
 			<xs:element name="AdditionalInfo" minOccurs="0"
@@ -169,9 +158,6 @@
 			<xs:element name="CertifCa" type="VFCertifCaType"
 				maxOccurs="1"></xs:element>
 				
-			<xs:element name="FilePerFirma" type="VFFilePerFirmaType"
-				maxOccurs="1"></xs:element>
-
 			<!-- ADDITIONAL INFO - PARER-LIKE -->
 			<xs:element name="AdditionalInfo" minOccurs="0"
 				maxOccurs="1" type="VFAdditionalInfoCrlType" />
@@ -188,9 +174,6 @@
 			<xs:element name="DsCertifSkiBase64" type="xs:string"></xs:element>
 			
 			<xs:element name="CertifOcsp" type="VFCertifOcspType"
-				maxOccurs="1"></xs:element>
-				
-			<xs:element name="FilePerFirma" type="VFFilePerFirmaType"
 				maxOccurs="1"></xs:element>
 
 			<!-- ADDITIONAL INFO - PARER-LIKE -->
@@ -213,16 +196,6 @@
 		<xs:sequence>
 			<xs:element name="DlUrlDistribOcsp" type="xs:string"></xs:element>
 			<xs:element name="NiOrdUrlDistribOcsp" type="xs:decimal"></xs:element>
-		</xs:sequence>
-	</xs:complexType>
-	
-	<!-- -->
-
-	<xs:complexType name="VFFilePerFirmaType">
-		<xs:sequence>
-			<xs:element name="BlFilePerFirma" type="xs:hexBinary"></xs:element>
-			<xs:element name="TiFilePerFirma" type="VFTipoFileType"></xs:element>
-			<xs:element name="NmFileDownload" type="xs:string"></xs:element>
 		</xs:sequence>
 	</xs:complexType>
 
@@ -375,18 +348,6 @@
             <xs:attribute name="SignsDetected" type="xs:boolean" use="optional" />            
 		</xs:complexType>
 	</xs:element>
-
-	<!-- -->
-	<xs:simpleType name="VFTipoFileType">
-		<xs:restriction base="xs:NMTOKEN">
-			<xs:enumeration value="CERTIF_CA" />
-			<xs:enumeration value="CERTIF_FIRMATARIO" />
-			<xs:enumeration value="CRL" />
-			<xs:enumeration value="OCSP" />		
-			<xs:enumeration value="CERTIF_OCSP" />				
-		</xs:restriction>
-	</xs:simpleType>
-
 
 	<!-- -->
 	<xs:simpleType name="VFTipoFirmaType">

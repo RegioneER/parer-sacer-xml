@@ -67,3 +67,4 @@ Progetto di proprietà di [Regione Emilia-Romagna](https://www.regione.emilia-ro
 # Licenza
 
 Questo progetto è rilasciato sotto licenza GNU Affero General Public License v3.0 or later ([LICENSE.txt](LICENSE.txt)).
+
