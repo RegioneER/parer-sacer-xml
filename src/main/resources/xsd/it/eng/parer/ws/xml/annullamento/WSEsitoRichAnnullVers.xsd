@@ -3,6 +3,7 @@
   elementFormDefault="qualified">
 
   <!-- versione 1.3 aggiunge enum FASCICOLO in TipoVersamentoType -->
+  <!-- versione 1.4 aggiunge il parametro TipoAnnullamentoType -->
   
   <!--  -->
   <xs:complexType  name="EsitoRichiestaType">
@@ -30,6 +31,7 @@
       <xs:element name="Ente" type="StringNVMax100Type" minOccurs="1" maxOccurs="1"/>
       <xs:element name="Struttura" type="StringNVMax100Type" minOccurs="1" maxOccurs="1"/>
       <xs:element name="UserID" type="StringNVMax100Type" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Utente" type="StringNVMax100Type" minOccurs="0" maxOccurs="1"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -43,6 +45,7 @@
       <xs:element name="Immediata" type="xs:boolean" minOccurs="0" maxOccurs="1" default="false"/>
       <xs:element name="ForzaAnnullamento" type="xs:boolean" minOccurs="0" maxOccurs="1" default="false"/>
       <xs:element name="RichiestaDaPreIngest" type="xs:boolean" minOccurs="0" maxOccurs="1" default="false"/>
+      <xs:element name="TipoAnnullamento" minOccurs="0" maxOccurs="1" type="TipoAnnullamentoType" default="ANNULLAMENTO_VERSAMENTO"/>
       <xs:element name="NumeroVersamentiDaAnnullare" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
       <xs:element name="NumeroVersamentiNonAnnullabili" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
     </xs:sequence>
@@ -131,6 +134,13 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="UNITA' DOCUMENTARIA"/>
       <xs:enumeration value="FASCICOLO"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="TipoAnnullamentoType">
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="ANNULLAMENTO_VERSAMENTO"/>
+        <xs:enumeration value="CANCELLAZIONE"/>
     </xs:restriction>
   </xs:simpleType>
 
