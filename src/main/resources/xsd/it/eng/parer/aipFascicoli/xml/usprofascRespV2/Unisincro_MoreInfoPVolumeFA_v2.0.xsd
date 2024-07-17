@@ -91,11 +91,7 @@
             <xs:element name="Oggetto"
                                     type="StringMax4000Type"
                                     maxOccurs="1"
-                                    minOccurs="1"/>
-            <xs:element name="TempoConservazione"
-                                    type="PosIntMax12DgtType"
-                                    maxOccurs="1"
-                                    minOccurs="1"/>
+                                    minOccurs="1"/>            
             <xs:element name="LivelloRiservatezza"
                                     type="StringMax100Type"
                                     maxOccurs="1"
