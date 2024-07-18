@@ -19,7 +19,7 @@
                 <xs:element name="DataChiusura" type="xs:date" maxOccurs="1" minOccurs="1"/>
                 <xs:element name="Oggetto" type="StringMax4000Type" maxOccurs="1" minOccurs="1"/>
                 <xs:element name="PrimoDocumentoNelFascicolo" type="ChiaveUDType" maxOccurs="1" minOccurs="0"/>
-                <xs:element name="UltimoDocumentoNelFascicolo" type="ChiaveUDType" maxOccurs="1" minOccurs="0"/>
+                <xs:element name="UltimoDocumentoNelFascicolo" type="ChiaveUDType" maxOccurs="1" minOccurs="0"/>                
                 <xs:element name="TempoConservazione" type="PosIntMax12DgtType" maxOccurs="1" minOccurs="1"/>
                 <xs:element name="LivelloRiservatezza" type="StringMax100Type" maxOccurs="1" minOccurs="1"/>
                 <xs:element name="AmministrazioneTitolare" type="AmministrazioneTitolareType" maxOccurs="1" minOccurs="0"/>
