@@ -3,18 +3,13 @@
     <parent>
         <groupId>it.eng.parer</groupId>
         <artifactId>parer-pom</artifactId>
-        <version>5.2.0</version>
+        <version>6.4.0</version>
     </parent>
 
     <artifactId>sacer-xml</artifactId>
-    <version>2.10.1-SNAPSHOT</version>
+    <version>2.11.1-SNAPSHOT</version>
     <name>sacer-xml</name>
     <description>Progetto SACER-XML</description>
-
-    <scm>
-        <developerConnection>scm:git:https://github.com/RegioneER/parer-sacer-xml.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
 
     <distributionManagement>
         <repository>
@@ -23,23 +18,44 @@
         </repository>      
     </distributionManagement>
 
+    <scm>
+        <developerConnection>scm:git:https://github.com/RegioneER/parer-sacer-xml.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
     <repositories>
         <repository>
             <id>github</id>
-            <url>https://maven.pkg.github.com/RegioneER/parer-framework-parerpom</url>            
+            <url>https://maven.pkg.github.com/RegioneER/parer-framework-parerpom</url>
         </repository>
-		<repository>
-			<id>central</id>
-			<url>https://repo1.maven.org/maven2</url>
-		</repository>              
-	</repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
+    </repositories>
    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sonar.projectVersion>${project.version}</sonar.projectVersion>
+        <jaxb2-maven-plugin.version>2.5.0</jaxb2-maven-plugin.version>
     </properties>
     <dependencies>
-        <dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>${jaxb.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-core</artifactId>
+			<version>${jaxb.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>${jaxb.version}</version>
+		</dependency>
+		<dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
@@ -51,7 +67,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxb2-maven-plugin</artifactId>
-                <version>1.6</version>
+                <version>${jaxb2-maven-plugin.version}</version>
                 <executions>
 
                     <!-- elenco fascicoli -->
@@ -61,13 +77,14 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/elencoFascicoli/xml/indice</schemaDirectory>
-                            <schemaFiles>indice_elencoversamento_fascicoli1.0.xsd</schemaFiles>
+                            <sources>
+                              <source>src/main/resources/xsd/it/eng/parer/elencoFascicoli/xml/indice/indice_elencoversamento_fascicoli1.0.xsd</source>
+                            </sources>
                             <packageName>it.eng.parer.elencoFascicoli.xml.indice</packageName>                            
                             <clearOutputDir>false</clearOutputDir>                            
                         </configuration>
                     </execution>
-                    
+
                     <!-- EVO#20972 -->
                     <!-- aip v2.0-->
                     <execution>
@@ -76,16 +93,21 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/usmainRespV2</schemaDirectory>
-                            <schemaFiles>Unisincro_PIndex.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/usmainRespV2/Unisincro_PIndex.xsd</source>
+                            </sources>
                             <packageName>it.eng.parer.ws.xml.usmainRespV2</packageName>
                             <clearOutputDir>false</clearOutputDir>
-                            <bindingDirectory>${project.basedir}/src/main/resources/xjb/</bindingDirectory>
-                            <bindingFiles>global.xjb</bindingFiles>
-                            <arguments>-extension -Xnamespace-prefix</arguments>
+                            <xjbSources>
+                              <xjbSource>src/main/resources/xjb/global.xjb</xjbSource>
+                            </xjbSources>
+							<arguments>
+								<argument>-extension</argument>
+								<argument>-Xnamespace-prefix</argument>
+							</arguments>
                         </configuration>
                     </execution>
-                    
+
                     <!-- aip ud v2.0 -->
                     <execution>
                         <id>xjc-usselfdescRespV2</id>
@@ -93,8 +115,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/usselfdescRespV2</schemaDirectory>
-                            <schemaFiles>Unisincro_MoreInfoSelfDescription_v2.0.xsd</schemaFiles>
+                       		<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/usselfdescRespV2/Unisincro_MoreInfoSelfDescription_v2.0.xsd</source>
+                            </sources>
                             <packageName>it.eng.parer.ws.xml.usselfdescRespV2</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -105,8 +128,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/uspvolumeRespV2</schemaDirectory>
-                            <schemaFiles>Unisincro_MoreInfoPVolume_v2.0.xsd</schemaFiles>
+                       		<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/uspvolumeRespV2/Unisincro_MoreInfoPVolume_v2.0.xsd</source>
+                            </sources>
                             <packageName>it.eng.parer.ws.xml.uspvolumeRespV2</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -120,8 +144,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/usmainResp</schemaDirectory>
-                            <schemaFiles>Unisincro_vers.02.xsd</schemaFiles>
+                            <sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/usmainResp/Unisincro_vers.02.xsd</source>
+                            </sources>
                             <packageName>it.eng.parer.ws.xml.usmainResp</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -134,8 +159,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/usdocResp</schemaDirectory>
-                            <schemaFiles>Unisincro_MoreInfoDoc_v1.1.xsd</schemaFiles>
+                            <sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/usdocResp/Unisincro_MoreInfoDoc_v1.1.xsd</source>
+                            </sources>
                             <packageName>it.eng.parer.ws.xml.usdocResp</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -146,8 +172,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/usfileResp</schemaDirectory>
-                            <schemaFiles>Unisincro_MoreInfoFile_v1.1.xsd</schemaFiles>
+                            <sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/usfileResp/Unisincro_MoreInfoFile_v1.1.xsd</source>
+                            </sources>
                             <packageName>it.eng.parer.ws.xml.usfileResp</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -158,8 +185,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/usselfdescResp</schemaDirectory>
-                            <schemaFiles>Unisincro_MoreInfoSelfDescription_v1.1.xsd</schemaFiles>
+                            <sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/usselfdescResp/Unisincro_MoreInfoSelfDescription_v1.1.xsd</source>
+                            </sources>
                             <packageName>it.eng.parer.ws.xml.usselfdescResp</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -170,8 +198,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/usvdcResp</schemaDirectory>
-                            <schemaFiles>Unisincro_MoreInfoVdC_v1.1.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/usvdcResp/Unisincro_MoreInfoVdC_v1.1.xsd</source>
+                            </sources>
                             <packageName>it.eng.parer.ws.xml.usvdcResp</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -184,8 +213,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/serie/xml/serfileResp</schemaDirectory>
-                            <schemaFiles>IndiceAIPSerie_MoreInfo_File_v1.0.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/serie/xml/serfileResp/IndiceAIPSerie_MoreInfo_File_v1.0.xsd</source>
+                            </sources>                        
                             <packageName>it.eng.parer.serie.xml.serfileResp</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -196,8 +226,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/serie/xml/serprodResp</schemaDirectory>
-                            <schemaFiles>IndiceAIPSerie_MoreInfo_Producer_v1.0.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/serie/xml/serprodResp/IndiceAIPSerie_MoreInfo_Producer_v1.0.xsd</source>
+                            </sources>                        
                             <packageName>it.eng.parer.serie.xml.serprodResp</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -208,8 +239,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/serie/xml/servdcResp</schemaDirectory>
-                            <schemaFiles>IndiceAIPSerie_MoreInfo_VdC_v1.0.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/serie/xml/servdcResp/IndiceAIPSerie_MoreInfo_VdC_v1.0.xsd</source>
+                            </sources>                         
                             <packageName>it.eng.parer.serie.xml.servdcResp</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -220,8 +252,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/serie/xml/serselfdescResp</schemaDirectory>
-                            <schemaFiles>IndiceAIPSerieUd_MoreInfo_SelfDescription_v1.0.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/serie/xml/serselfdescResp/IndiceAIPSerieUd_MoreInfo_SelfDescription_v1.0.xsd</source>
+                            </sources>                          
                             <packageName>it.eng.parer.serie.xml.serselfdescResp</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -232,8 +265,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/serie/xml/serselfdescRespV2</schemaDirectory>
-                            <schemaFiles>Unisincro_MoreInfoSelfDescription_v2.0.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/serie/xml/serselfdescRespV2/Unisincro_MoreInfoSelfDescription_v2.0.xsd</source>
+                            </sources>                         
                             <packageName>it.eng.parer.serie.xml.serselfdescRespV2</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -244,8 +278,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/serie/xml/servdcRespV2</schemaDirectory>
-                            <schemaFiles>Unisincro_MoreInfoPVolume_v2.0.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/serie/xml/servdcRespV2/Unisincro_MoreInfoPVolume_v2.0.xsd</source>
+                            </sources>                         
                             <packageName>it.eng.parer.serie.xml.servdcRespV2</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -256,8 +291,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/serie/xml/serfileRespV2</schemaDirectory>
-                            <schemaFiles>Unisincro_MoreInfoFile_v1.1.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/serie/xml/serfileRespV2/Unisincro_MoreInfoFile_v1.1.xsd</source>
+                            </sources>                        
                             <packageName>it.eng.parer.serie.xml.serfileRespV2</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -270,8 +306,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/elencoFascicoli/xml/aip</schemaDirectory>
-                            <schemaFiles>ElencoIndiciAIPFascicoli.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/elencoFascicoli/xml/aip/ElencoIndiciAIPFascicoli.xsd</source>
+                            </sources>                         
                             <packageName>it.eng.parer.aipelencoFascicoli.xml.indice</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -285,8 +322,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/aipFascicoli/xml/usmainResp</schemaDirectory>
-                            <schemaFiles>Unisincro_vers.02.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/aipFascicoli/xml/usmainResp/Unisincro_vers.02.xsd</source>
+                            </sources>                        
                             <packageName>it.eng.parer.aipFascicoli.xml.usmainResp</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -297,8 +335,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/aipFascicoli/xml/usselfdescResp</schemaDirectory>
-                            <schemaFiles>Unisincro_MoreInfoSelfDescription_v1.0.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/aipFascicoli/xml/usselfdescResp/Unisincro_MoreInfoSelfDescription_v1.0.xsd</source>
+                            </sources>                          
                             <packageName>it.eng.parer.aipFascicoli.xml.usselfdescResp</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -309,13 +348,14 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/aipFascicoli/xml/usprofascResp</schemaDirectory>
-                            <schemaFiles>ProfiloCompletoFascicolo_1.0.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/aipFascicoli/xml/usprofascResp/ProfiloCompletoFascicolo_1.0.xsd</source>
+                            </sources>                          
                             <packageName>it.eng.parer.aipFascicoli.xml.usprofascResp</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
-                    
+
                     <!-- aip fascicoli v2.0 -->
                     <execution>
                         <id>xjc-aipFascicoliUsmainRespV2</id>
@@ -323,13 +363,18 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/aipFascicoli/xml/usmainRespV2</schemaDirectory>
-                            <schemaFiles>Unisincro_PIndex.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/aipFascicoli/xml/usmainRespV2/Unisincro_PIndex.xsd</source>
+                            </sources>                        
                             <packageName>it.eng.parer.aipFascicoli.xml.usmainRespV2</packageName>
                             <clearOutputDir>false</clearOutputDir>
-                            <bindingDirectory>${project.basedir}/src/main/resources/xjb/</bindingDirectory>
-                            <bindingFiles>global_fasc.xjb</bindingFiles>
-                            <arguments>-extension -Xnamespace-prefix</arguments>
+                            <xjbSources>
+                              <xjbSource>src/main/resources/xjb/global_fasc.xjb</xjbSource>
+                            </xjbSources>
+							<arguments>
+								<argument>-extension</argument>
+								<argument>-Xnamespace-prefix</argument>
+							</arguments>
                         </configuration>
                     </execution>
                     <execution>
@@ -338,13 +383,20 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/aipFascicoli/xml/usselfdescRespV2</schemaDirectory>
-                            <schemaFiles>Unisincro_MoreInfoSelfDescriptionFA_v2.0.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/aipFascicoli/xml/usselfdescRespV2/Unisincro_MoreInfoSelfDescriptionFA_v2.0.xsd</source>
+                            </sources>                         
                             <packageName>it.eng.parer.aipFascicoli.xml.usselfdescRespV2</packageName>
                             <clearOutputDir>false</clearOutputDir>
-                            <bindingDirectory>${project.basedir}/src/main/resources/xjb/</bindingDirectory>
-                            <bindingFiles>usselfdescRespV2.xjb</bindingFiles>
-                            <arguments>-extension -Xnamespace-prefix -Xannotate -XremoveAnnotation</arguments>
+                            <xjbSources>
+                              <xjbSource>src/main/resources/xjb/usselfdescRespV2.xjb</xjbSource>
+                            </xjbSources>
+							<arguments>
+								<argument>-extension</argument>
+								<argument>-Xnamespace-prefix</argument>
+								<argument>-Xannotate</argument>
+								<argument>-XremoveAnnotation</argument>
+							</arguments>                            
                         </configuration>
                     </execution>
                     <execution>
@@ -353,13 +405,20 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/aipFascicoli/xml/usprofascRespV2</schemaDirectory>
-                            <schemaFiles>Unisincro_MoreInfoPVolumeFA_v2.0.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/aipFascicoli/xml/usprofascRespV2/Unisincro_MoreInfoPVolumeFA_v2.0.xsd</source>
+                            </sources>                         
                             <packageName>it.eng.parer.aipFascicoli.xml.usprofascRespV2</packageName>
                             <clearOutputDir>false</clearOutputDir>
-                            <bindingDirectory>${project.basedir}/src/main/resources/xjb/</bindingDirectory>
-                            <bindingFiles>usprofascRespV2.xjb</bindingFiles>
-                            <arguments>-extension -Xnamespace-prefix -Xannotate -XremoveAnnotation</arguments>
+                            <xjbSources>
+                              <xjbSource>src/main/resources/xjb/usprofascRespV2.xjb</xjbSource>
+                            </xjbSources>
+							<arguments>
+								<argument>-extension</argument>
+								<argument>-Xnamespace-prefix</argument>
+								<argument>-Xannotate</argument>
+								<argument>-XremoveAnnotation</argument>
+							</arguments>                              
                        </configuration>
                     </execution>
                     <!-- end MEV#26576 -->
@@ -371,8 +430,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versfascicolo</schemaDirectory>
-                            <schemaFiles>WSRequestIndiceSIPFascicolo.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/versfascicolo/WSRequestIndiceSIPFascicolo.xsd</source>
+                            </sources>                        
                             <packageName>it.eng.parer.ws.xml.versfascicolo</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -383,8 +443,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versfascicoloresp</schemaDirectory>
-                            <schemaFiles>WSResponseRapportoVersamentoFascicolo.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/versfascicoloresp/WSResponseRapportoVersamentoFascicolo.xsd</source>
+                            </sources>                         
                             <packageName>it.eng.parer.ws.xml.versfascicoloresp</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -396,8 +457,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versfascicoloV2</schemaDirectory>
-                            <schemaFiles>WSRequestIndiceSIPFascicolo.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/versfascicoloV2/WSRequestIndiceSIPFascicolo.xsd</source>
+                            </sources>                        
                             <packageName>it.eng.parer.ws.xml.versfascicoloV2</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -408,8 +470,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versfascicolorespV2</schemaDirectory>
-                            <schemaFiles>WSResponseRapportoVersamentoFascicolo.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/versfascicolorespV2/WSResponseRapportoVersamentoFascicolo.xsd</source>
+                            </sources>                        
                             <packageName>it.eng.parer.ws.xml.versfascicolorespV2</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -422,8 +485,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versReqStato</schemaDirectory>
-                            <schemaFiles>WSRequestStato_1.2.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/versReqStato/WSRequestStato_1.2.xsd</source>
+                            </sources>                        
                             <packageName>it.eng.parer.ws.xml.versReqStato</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -434,8 +498,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versReqStatoMM</schemaDirectory>
-                            <schemaFiles>WSRequestStatoMM.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/versReqStatoMM/WSRequestStatoMM.xsd</source>
+                            </sources>                         
                             <packageName>it.eng.parer.ws.xml.versReqStatoMM</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -446,8 +511,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versRespStato</schemaDirectory>
-                            <schemaFiles>WSResponseStato.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/versRespStato/WSResponseStato.xsd</source>
+                            </sources>                         
                             <packageName>it.eng.parer.ws.xml.versRespStato</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -459,8 +525,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versReqStatoFasc</schemaDirectory>
-                            <schemaFiles>WSRequestStatoFasc.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/versReqStatoFasc/WSRequestStatoFasc.xsd</source>
+                            </sources>                         
                             <packageName>it.eng.parer.ws.xml.versReqStatoFasc</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -471,8 +538,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versRespStatoFasc</schemaDirectory>
-                            <schemaFiles>WSResponseStatoFasc.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/versRespStatoFasc/WSResponseStatoFasc.xsd</source>
+                            </sources>                        
                             <packageName>it.eng.parer.ws.xml.versRespStatoFasc</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -486,8 +554,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/annullamento</schemaDirectory>
-                            <schemaFiles>WSRichAnnullVers.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/annullamento/WSRichAnnullVers.xsd</source>
+                            </sources>                         
                             <packageName>it.eng.parer.ws.xml.richAnnullVers</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -498,8 +567,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/annullamento</schemaDirectory>
-                            <schemaFiles>WSEsitoRichAnnullVers.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/annullamento/WSEsitoRichAnnullVers.xsd</source>
+                            </sources>                         
                             <packageName>it.eng.parer.ws.xml.esitoRichAnnullVers</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -512,8 +582,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/elenco/xml/indice</schemaDirectory>
-                            <schemaFiles>indice_elencoversamento3.1.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/elenco/xml/indice/indice_elencoversamento3.1.xsd</source>
+                            </sources>                         
                             <packageName>it.eng.parer.elenco.xml.indice</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -526,8 +597,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/serie/xml/indiceVolumeSerie</schemaDirectory>
-                            <schemaFiles>IndiceVolumeSerie.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/serie/xml/indiceVolumeSerie/IndiceVolumeSerie.xsd</source>
+                            </sources>                         
                             <packageName>it.eng.parer.serie.xml.indiceVolumeSerie</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -540,8 +612,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/elenco/xml/aip</schemaDirectory>
-                            <schemaFiles>ElencoIndiciAIP.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/elenco/xml/aip/ElencoIndiciAIP.xsd</source>
+                            </sources>                        
                             <packageName>it.eng.parer.elenco.xml.aip</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -552,8 +625,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/xsd/titolario</schemaDirectory>
-                            <schemaFiles>GestioneTitolario_xsd_1.0.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/xsd/titolario/GestioneTitolario_xsd_1.0.xsd</source>
+                            </sources>                        
                             <packageName>it.eng.parer.titolario.xml</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -566,8 +640,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versReq</schemaDirectory>
-                            <schemaFiles>WSRequestVersamento.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/versReq/WSRequestVersamento.xsd</source>
+                            </sources>                         
                             <packageName>it.eng.parer.ws.xml.versReq</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -578,8 +653,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versReqMultiMedia</schemaDirectory>
-                            <schemaFiles>WSRequestMM.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/versReqMultiMedia/WSRequestMM.xsd</source>
+                            </sources>                        
                             <packageName>it.eng.parer.ws.xml.versReqMultiMedia</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -590,8 +666,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versResp</schemaDirectory>
-                            <schemaFiles>WSResponseVersamento.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/versResp/WSResponseVersamento.xsd</source>
+                            </sources>                         
                             <packageName>it.eng.parer.ws.xml.versResp</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -603,8 +680,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versAggiornamentoReq</schemaDirectory>
-                            <schemaFiles>WSRequestAggiornamentoVersamento_1.5.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/versAggiornamentoReq/WSRequestAggiornamentoVersamento_1.5.xsd</source>
+                            </sources>                          
                             <packageName>it.eng.parer.ws.xml.versUpdReq</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -615,8 +693,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/ws/xml/versAggiornamentoResp</schemaDirectory>
-                            <schemaFiles>WSResponseAggiornamentoVersamento_1.5.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/versAggiornamentoResp/WSResponseAggiornamentoVersamento_1.5.xsd</source>
+                            </sources>                         
                             <packageName>it.eng.parer.ws.xml.versUpdResp</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -628,8 +707,9 @@
                             <goal>xjc</goal>
                         </goals>
                         <configuration>
-                            <schemaDirectory>${project.basedir}/src/main/resources/xsd/it/eng/parer/firma/xml/wrapper</schemaDirectory>
-                            <schemaFiles>VerificaFirmaWrapper.xsd</schemaFiles>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/firma/xml/wrapper/VerificaFirmaWrapper.xsd</source>
+                            </sources>                         
                             <packageName>it.eng.parer.firma.xml</packageName>
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
@@ -646,6 +726,11 @@
                         <artifactId>jaxb2-basics-annotate</artifactId>
                         <version>1.1.0</version>
                     </dependency>
+                    <dependency>
+						<groupId>javax.activation</groupId>
+						<artifactId>javax.activation-api</artifactId>
+						<version>1.2.0</version>
+					</dependency>					
                 </dependencies>
             </plugin>
             
@@ -654,7 +739,6 @@
                 jaxb2-maven-plugin is JDK 8 compatible -->
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>properties-maven-plugin</artifactId>
-                <version>1.0.0</version>
                 <executions>
                     <execution>
                         <id>set-additional-system-properties</id>
@@ -686,7 +770,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<configuration>
-					<!-- Esclusione dai javadoc delle classi generate da jaxb -->
+                    <!-- Esclusione dai javadoc delle classi generate da jaxb -->
 					<excludePackageNames>it.eng.parer.*</excludePackageNames>
 				</configuration>
 			</plugin>			
@@ -705,7 +789,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<configuration>
-					<!-- Esclusione dai javadoc delle classi generate da jaxb -->
+                    <!-- Esclusione dai javadoc delle classi generate da jaxb -->
 					<excludePackageNames>it.eng.parer.*</excludePackageNames>
 				</configuration>
 			</plugin>
