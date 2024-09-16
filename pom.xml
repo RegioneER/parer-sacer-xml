@@ -10,19 +10,30 @@
     <version>2.11.0</version>
     <name>sacer-xml</name>
     <description>Progetto SACER-XML</description>
-    <url>https://nexus.ente.regione.emr.it/repository/parer-site/sacer-xml/${project.version}/</url>
 
     <distributionManagement>
-	    <site>
-            <id>site</id>
-            <url>dav:https://nexus.ente.regione.emr.it/repository/parer-site/sacer-xml/${project.version}</url>
-        </site>
+        <repository>
+          <id>github</id>
+          <url>https://maven.pkg.github.com/RegioneER/parer-sacer-xml</url>
+        </repository>      
     </distributionManagement>
 
     <scm>
-        <developerConnection>scm:git:git@gitlab.ente.regione.emr.it:parer/lib/sacer-xml.git</developerConnection>
-        <tag>sacer-xml-2.11.0</tag>
+        <developerConnection>scm:git:https://github.com/RegioneER/parer-sacer-xml.git</developerConnection>
+        <tag>HEAD</tag>
     </scm>
+
+    <repositories>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/RegioneER/parer-framework-parerpom</url>
+        </repository>
+        <repository>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
+    </repositories>
+   
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sonar.projectVersion>${project.version}</sonar.projectVersion>
@@ -59,7 +70,7 @@
                 <version>${jaxb2-maven-plugin.version}</version>
                 <executions>
 
-					<!-- elenco fascicoli -->
+                    <!-- elenco fascicoli -->
                     <execution>
                         <id>xjc-elencoFascicoli</id>
                         <goals>
@@ -74,8 +85,8 @@
                         </configuration>
                     </execution>
 
-					<!-- EVO#20972 -->
-					<!-- aip v2.0-->
+                    <!-- EVO#20972 -->
+                    <!-- aip v2.0-->
                     <execution>
                         <id>xjc-usmainRespV2</id>
                         <goals>
@@ -97,7 +108,7 @@
                         </configuration>
                     </execution>
 
-					<!-- aip ud v2.0 -->
+                    <!-- aip ud v2.0 -->
                     <execution>
                         <id>xjc-usselfdescRespV2</id>
                         <goals>
@@ -124,9 +135,9 @@
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
-					<!-- end EVO#20972 -->
+                    <!-- end EVO#20972 -->
 
-					<!-- aip -->
+                    <!-- aip -->
                     <execution>
                         <id>xjc-usmainResp</id>
                         <goals>
@@ -141,7 +152,7 @@
                         </configuration>
                     </execution>
 
-					<!-- aip ud -->
+                    <!-- aip ud -->
                     <execution>
                         <id>xjc-usdocResp</id>
                         <goals>
@@ -195,7 +206,7 @@
                         </configuration>
                     </execution>
 
-					<!-- aip serie -->
+                    <!-- aip serie -->
                     <execution>
                         <id>xjc-serfileResp</id>
                         <goals>
@@ -288,7 +299,7 @@
                         </configuration>
                     </execution>
 
-					<!-- aip elenco fascicoli -->
+                    <!-- aip elenco fascicoli -->
                     <execution>
                         <id>xjc-aipelencoFascicoli</id>
                         <goals>
@@ -303,8 +314,8 @@
                         </configuration>
                     </execution>
 
-					<!-- MEV#26576 -->
-					<!-- aip fascicoli -->
+                    <!-- MEV#26576 -->
+                    <!-- aip fascicoli -->
                     <execution>
                         <id>xjc-aipFascicoliUsmainResp</id>
                         <goals>
@@ -345,7 +356,7 @@
                         </configuration>
                     </execution>
 
-					<!-- aip fascicoli v2.0 -->
+                    <!-- aip fascicoli v2.0 -->
                     <execution>
                         <id>xjc-aipFascicoliUsmainRespV2</id>
                         <goals>
@@ -410,7 +421,7 @@
 							</arguments>                              
                        </configuration>
                     </execution>
-					<!-- end MEV#26576 -->
+                    <!-- end MEV#26576 -->
 
 
                     <execution>
@@ -467,7 +478,7 @@
                         </configuration>
                     </execution>
 
-					<!-- ws recupero -->
+                    <!-- ws recupero -->
                     <execution>
                         <id>xjc-versReqStato</id>
                         <goals>
@@ -507,7 +518,7 @@
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
-					<!-- EVO#13993 -->
+                    <!-- EVO#13993 -->
                     <execution>
                         <id>xjc-versReqStatoFasc</id>
                         <goals>
@@ -534,9 +545,9 @@
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
-					<!-- end EVO#13993 -->
+                    <!-- end EVO#13993 -->
 
-					<!-- ws annulla versamento -->
+                    <!-- ws annulla versamento -->
                     <execution>
                         <id>xjc-richAnnullVers</id>
                         <goals>
@@ -564,7 +575,7 @@
                         </configuration>
                     </execution>
 
-					<!-- Creazione Elenco Versamento -->
+                    <!-- Creazione Elenco Versamento -->
                     <execution>
                         <id>xjc-indice</id>
                         <goals>
@@ -579,7 +590,7 @@
                         </configuration>
                     </execution>
 
-					<!-- Indice Volume Serie-->
+                    <!-- Indice Volume Serie-->
                     <execution>
                         <id>xjc-indiceVolumeSerie</id>
                         <goals>
@@ -594,7 +605,7 @@
                         </configuration>
                     </execution>
 
-					<!-- Creazione Elenco Indice AIP -->
+                    <!-- Creazione Elenco Indice AIP -->
                     <execution>
                         <id>xjc-elencoAIP</id>
                         <goals>
@@ -622,7 +633,7 @@
                         </configuration>
                     </execution>
 
-					<!-- ws versamento -->
+                    <!-- ws versamento -->
                     <execution>
                         <id>xjc-versamentoReq</id>
                         <goals>
@@ -662,7 +673,7 @@
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
-					<!-- ws aggiornamento metadati di versamento -->
+                    <!-- ws aggiornamento metadati di versamento -->
                     <execution>
                         <id>xjc-aggiornamentoVersReq</id>
                         <goals>
@@ -689,7 +700,7 @@
                             <clearOutputDir>false</clearOutputDir>
                         </configuration>
                     </execution>
-					<!-- verifica firma -->
+                    <!-- verifica firma -->
                     <execution>
                         <id>xjc-firma-wrapper</id>
                         <goals>
@@ -724,7 +735,7 @@
             </plugin>
             
             <plugin>
-				<!-- We use this plugin to ensure that our usage of the
+                <!-- We use this plugin to ensure that our usage of the
                 jaxb2-maven-plugin is JDK 8 compatible -->
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>properties-maven-plugin</artifactId>
@@ -750,7 +761,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
             </plugin>
-			<!-- Sovrascrive il padre, necessario per rilasciare su git -->
+            <!-- Sovrascrive il padre, necessario per rilasciare su git -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
@@ -759,13 +770,13 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<configuration>
-					<!-- Esclusione dai javadoc delle classi generate da jaxb -->
+                    <!-- Esclusione dai javadoc delle classi generate da jaxb -->
 					<excludePackageNames>it.eng.parer.*</excludePackageNames>
 				</configuration>
 			</plugin>			
         </plugins>
         <resources>
-			<!-- Copia i file XSD che saranno utilizzati in fase di validazione -->
+            <!-- Copia i file XSD che saranno utilizzati in fase di validazione -->
             <resource>
                 <directory>src/main/resources/xsd</directory>
             </resource>
@@ -778,7 +789,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<configuration>
-					<!-- Esclusione dai javadoc delle classi generate da jaxb -->
+                    <!-- Esclusione dai javadoc delle classi generate da jaxb -->
 					<excludePackageNames>it.eng.parer.*</excludePackageNames>
 				</configuration>
 			</plugin>
