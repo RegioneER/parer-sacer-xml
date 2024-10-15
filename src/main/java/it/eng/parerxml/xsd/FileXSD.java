@@ -74,7 +74,12 @@ public enum FileXSD {
     VERS_REQ_XSD("/it/eng/parer/ws/xml/versReq/WSRequestVersamento.xsd"), //
     VERS_RESP_XSD("/it/eng/parer/ws/xml/versResp/WSResponseVersamento.xsd"), //
     AGG_VERS_REQ_XSD("/it/eng/parer/ws/xml/versAggiornamentoReq/WSRequestAggiornamentoVersamento_1.5.xsd"), //
-    AGG_VERS_RESP_XSD("it/eng/parer/ws/xml/versAggiornamentoResp/WSResponseAggiornamentoVersamento_1.5.xsd");
+    AGG_VERS_RESP_XSD("it/eng/parer/ws/xml/versAggiornamentoResp/WSResponseAggiornamentoVersamento_1.5.xsd"),
+
+    // MEV#34100
+    VERS_REQ_FASC_XSD_V3("/it/eng/parer/ws/xml/versfascicoloV3/WSRequestIndiceSIPFascicolo.xsd"), //
+    VERS_RESP_FASC_XSD_V3("/it/eng/parer/ws/xml/versfascicolorespV3/WSResponseRapportoVersamentoFascicolo.xsd"); //
+    // end MEV#34100;
 
     private final String filename;
 
