@@ -3,11 +3,11 @@
     <parent>
         <groupId>it.eng.parer</groupId>
         <artifactId>parer-pom</artifactId>
-        <version>6.4.0</version>
+        <version>6.4.1</version>
     </parent>
 
     <artifactId>sacer-xml</artifactId>
-    <version>2.11.2-SNAPSHOT</version>
+    <version>2.12.1-SNAPSHOT</version>
     <name>sacer-xml</name>
     <description>Progetto SACER-XML</description>
 
@@ -489,6 +489,15 @@
                             </sources>
                             <packageName>it.eng.parer.ws.xml.versfascicoloV3</packageName>
                             <clearOutputDir>false</clearOutputDir>
+                            <xjbSources>
+                              <xjbSource>src/main/resources/xjb/requestIndiceSIPFascicoloV3.xjb</xjbSource>
+                            </xjbSources>
+							<arguments>
+								<argument>-extension</argument>
+								<argument>-Xnamespace-prefix</argument>
+								<argument>-Xannotate</argument>
+								<argument>-XremoveAnnotation</argument>
+							</arguments>    
                         </configuration>
                     </execution>
                     <execution>

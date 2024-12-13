@@ -1,0 +1,36 @@
+<jaxb:bindings
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+    xmlns:annox="http://annox.dev.java.net"
+    jaxb:extensionBindingPrefixes="xjc annox"
+    version="2.1">
+   
+    <jaxb:bindings schemaLocation="../xsd/it/eng/parer/ws/xml/versfascicoloV3/WSRequestIndiceSIPFascicolo.xsd">
+        
+        <jaxb:bindings node="//xs:complexType[@name='ChiaveType']">
+            <annox:annotateClass>@javax.xml.bind.annotation.XmlType(namespace="versfascicoloV3")</annox:annotateClass>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='FascicoloType']">
+            <annox:annotateClass>@javax.xml.bind.annotation.XmlType(namespace="versfascicoloV3")</annox:annotateClass>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='ProfiloArchivisticoType']">
+            <annox:annotateClass>@javax.xml.bind.annotation.XmlType(namespace="versfascicoloV3")</annox:annotateClass>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='VersatoreType']">
+            <annox:annotateClass>@javax.xml.bind.annotation.XmlType(namespace="versfascicoloV3")</annox:annotateClass>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='IntestazioneType']">
+            <annox:annotateClass>@javax.xml.bind.annotation.XmlType(namespace="versfascicoloV3")</annox:annotateClass>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:simpleType[@name='TipoConservazioneType']">
+            <annox:annotateEnum>@javax.xml.bind.annotation.XmlType(namespace="versfascicoloV3")</annox:annotateEnum>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='ConfigType']">
+            <annox:annotateClass>@javax.xml.bind.annotation.XmlType(namespace="versfascicoloV3")</annox:annotateClass>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='ProfiloNormativoType']">
+            <annox:annotateClass>@javax.xml.bind.annotation.XmlType(namespace="versfascicoloV3")</annox:annotateClass>
+        </jaxb:bindings>
+
+    </jaxb:bindings>
+</jaxb:bindings>

@@ -116,6 +116,7 @@
         <xs:element name="EsitoChiamataWS" type="EsitoChiamataWSType"/>
         <xs:element name="UnitaDocumentaria" type="DatiUnitaDocType" minOccurs="0"/>
         <xs:element name="XMLRichiesta" type="xs:string" minOccurs="0"/>
+        <xs:element name="LogStatoConservazione" type="LogStatoConservazioneType" minOccurs="0"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -142,6 +143,22 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+
+  <xs:complexType name="LogStatoConservazioneType">
+    <xs:sequence>
+      <xs:element name="Log" type="LogType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="LogType">
+    <xs:sequence>
+      <xs:element name="DataEvento" type="xs:dateTime" minOccurs="1"/>
+      <xs:element name="TipoEvento" type="xs:string" minOccurs="1"/>
+      <xs:element name="TipoStatoConservazione" type="xs:string" minOccurs="1"/>
+      <xs:element name="NomeAgente" type="xs:string" minOccurs="1"/>
+      <xs:element name="Modalita" type="xs:string" minOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
 </xs:schema>
 
 

@@ -31,6 +31,9 @@
                         minOccurs="0" maxOccurs="1" />
             <xs:element name="TipoNomeFile" type="TokenFileNameType"
                         minOccurs="0" maxOccurs="1" />
+            <!-- MEV#34239 - Estensione servizio per recupero file sbustati -->
+            <xs:element name="FileSbustato" type="xs:boolean" 
+                        minOccurs="0" maxOccurs="1" />
         </xs:sequence>
     </xs:complexType>
     <!-- -->
