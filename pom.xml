@@ -3,11 +3,11 @@
     <parent>
         <groupId>it.eng.parer</groupId>
         <artifactId>parer-pom</artifactId>
-        <version>6.4.0</version>
+        <version>6.4.1</version>
     </parent>
 
     <artifactId>sacer-xml</artifactId>
-    <version>2.11.3-SNAPSHOT</version>
+    <version>2.13.1-SNAPSHOT</version>
     <name>sacer-xml</name>
     <description>Progetto SACER-XML</description>
 

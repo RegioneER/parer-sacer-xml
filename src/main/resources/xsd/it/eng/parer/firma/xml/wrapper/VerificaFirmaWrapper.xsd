@@ -80,7 +80,7 @@
 	<xs:complexType name="VFCertifCaType">
 		<xs:sequence>
 			<!-- EIDAS eu.europa.esig.dss.jaxb.diagnostic.XmlCertificate.getSerialNumber() -->
-			<xs:element name="NiSerialCertifCa" type="xs:decimal"></xs:element>
+			<xs:element name="DsSerialCertifCa" type="xs:string"></xs:element>			
 			<!-- EIDAS eu.europa.esig.dss.jaxb.diagnostic.XmlCertificate.getNotBefore() -->
 			<xs:element name="DtIniValCertifCa" type="xs:dateTime"></xs:element>
 			<!-- EIDAS eu.europa.esig.dss.jaxb.diagnostic.XmlCertificate.getNotAfter() -->
@@ -104,8 +104,8 @@
 	<!-- -->
 	<xs:complexType name="VFCertifFirmatarioType">
 		<xs:sequence>
-			<xs:element name="NiSerialCertifFirmatario"
-				type="xs:decimal"></xs:element>
+			<xs:element name="DsSerialCertifFirmatario"
+				type="xs:string"></xs:element>
 
 			<xs:element name="DtIniValCertifFirmatario"
 				type="xs:dateTime"></xs:element>
@@ -128,7 +128,7 @@
     <xs:complexType name="VFCertifOcspType">
 		<xs:sequence>
 			<!-- EIDAS eu.europa.esig.dss.jaxb.diagnostic.XmlCertificate.getSerialNumber() -->
-			<xs:element name="NiSerialCertifOcsp" type="xs:decimal"></xs:element>
+			<xs:element name="DsSerialCertifOcsp" type="xs:string"></xs:element>
 			<!-- EIDAS eu.europa.esig.dss.jaxb.diagnostic.XmlCertificate.getNotBefore() -->
 			<xs:element name="DtIniValCertifOcsp" type="xs:dateTime"></xs:element>
 			<!-- EIDAS eu.europa.esig.dss.jaxb.diagnostic.XmlCertificate.getNotAfter() -->
@@ -152,7 +152,7 @@
 			<xs:element name="DtIniCrl" type="xs:dateTime"></xs:element>
 			<xs:element name="DtScadCrl" type="xs:dateTime"></xs:element>
 
-			<xs:element name="NiSerialCrl" type="xs:decimal"></xs:element>
+			<xs:element name="DsSerialCrl" type="xs:string"></xs:element>
 			<!-- Ripristinare la CA -->
 			
 			<xs:element name="CertifCa" type="VFCertifCaType"

@@ -6,6 +6,7 @@ Fonte template redazione documento:  https://www.makeareadme.com/.
 # Descrizione
 
 Il seguente progetto è utilizzato come **dipendenza** interna per definire i modelli "xsd" che via Jaxb permettono di generare le relative classi Java (marshalling & unmarshalling), è utilizzato quindi come libreria/dipendenza Maven (https://maven.apache.org/), dalle seguenti applicazioni: Sacer e Sacerws.
+
 # Installazione
 
 Come già specificato nel paragrafo precedente [Descrizione](# Descrizione) si tratta di un progetto di tipo "libreria", quindi un modulo applicativo utilizzato attraverso la definzione della dipendenza Maven secondo lo standard previsto (https://maven.apache.org/): 
