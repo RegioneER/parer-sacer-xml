@@ -592,6 +592,9 @@
         <xs:element name="URNSIP" type="xs:string" minOccurs="0"/>
         <xs:element name="DataVersamento" type="xs:dateTime" minOccurs="0"/>
         <xs:element name="EsitoGenerale" type="ECEsitoGeneraleType"/>
+        <xs:element name="EsitoAbilitazioneTipologiaUd" type="ECEsitoPosNegType"/>
+        <xs:element name="EsitoAbilitazioneTipoDoc" type="ECEsitoPosNegType"/>
+        <xs:element name="EsitoAbilitazioneRegistro" type="ECEsitoPosNegType"/>
         <xs:element name="ErroriUlteriori" type="ECErroriSecondariType" minOccurs="0"/>
         <xs:element name="WarningUlteriori" type="ECWarningSecondariType" minOccurs="0"/>
         <xs:element name="EsitoChiamataWS" type="ECEsitoChiamataWSType"/>
@@ -612,6 +615,9 @@
           <xs:element name="URNSIP" type="xs:string" minOccurs="0"/>
           <xs:element name="DataVersamento" type="xs:dateTime"/>
           <xs:element name="EsitoGenerale" type="ECEsitoGeneraleType"/>
+          <xs:element name="EsitoAbilitazioneTipologiaUd" type="ECEsitoPosNegType"/>
+          <xs:element name="EsitoAbilitazioneTipoDoc" type="ECEsitoPosNegType"/>
+          <xs:element name="EsitoAbilitazioneRegistro" type="ECEsitoPosNegType"/>
           <xs:element name="ErroriUlteriori" type="ECErroriSecondariType" minOccurs="0"/>
           <xs:element name="WarningUlteriori" type="ECWarningSecondariType" minOccurs="0"/>
           <xs:element name="EsitoChiamataWS" type="ECEsitoChiamataWSType"/>
