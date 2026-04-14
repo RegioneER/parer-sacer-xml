@@ -7,7 +7,7 @@
     </parent>
 
     <artifactId>sacer-xml</artifactId>
-    <version>2.14.2-SNAPSHOT</version>
+    <version>2.15.0</version>
     <name>sacer-xml</name>
     <description>Progetto SACER-XML</description>
 
@@ -516,7 +516,7 @@
                     <!-- end MEV#34100 -->
 
 					<!-- ws recupero -->
-                    <execution>
+                    <!-- <execution>
                         <id>xjc-versReqStato</id>
                         <goals>
                             <goal>xjc</goal>
@@ -524,6 +524,19 @@
                         <configuration>
                         	<sources>
                               <source>src/main/resources/xsd/it/eng/parer/ws/xml/versReqStato/WSRequestStato_1.2.xsd</source>
+                            </sources>                        
+                            <packageName>it.eng.parer.ws.xml.versReqStato</packageName>
+                            <clearOutputDir>false</clearOutputDir>
+                        </configuration>
+                    </execution> -->
+                    <execution>
+                        <id>xjc-versReqStato</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                        	<sources>
+                              <source>src/main/resources/xsd/it/eng/parer/ws/xml/versReqStato/WSRequestStato_1.3.xsd</source>
                             </sources>                        
                             <packageName>it.eng.parer.ws.xml.versReqStato</packageName>
                             <clearOutputDir>false</clearOutputDir>

@@ -22,7 +22,7 @@ package it.eng.parerxml.xsd;
  * @author Moretti_Lu
  */
 public enum FileXSD {
-    VERS_REQ_STATO_XSD("/it/eng/parer/ws/xml/versReqStato/WSRequestStato_1.2.xsd"), //
+    VERS_REQ_STATO_XSD("/it/eng/parer/ws/xml/versReqStato/WSRequestStato_1.3.xsd"), //
     // EVO#13993
     VERS_REQ_STATO_FASC_XSD("/it/eng/parer/ws/xml/versReqStatoFasc/WSRequestStatoFasc.xsd"), //
     // end EVO#13993
